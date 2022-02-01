@@ -1,2 +1,11 @@
 
 .DS_Store
+.idea/modules.xml
+.idea/thegameshipandroid.iml
+.idea/vcs.xml
+.idea/workspace.xml
+code/.idea/.name
+code/.idea/compiler.xml
+code/.idea/gradle.xml
+code/.idea/misc.xml
+code/.idea/vcs.xml
