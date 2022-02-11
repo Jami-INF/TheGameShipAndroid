@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_logo">50dp</dimen>
+    <dimen name="margin_button_left_and_right">64dp</dimen>
+    <dimen name="margin_top_and_bottom">16dp</dimen>
+</resources>

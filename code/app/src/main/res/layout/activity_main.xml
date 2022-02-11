@@ -6,13 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/imageBackGround"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/mainbg"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <TextView
+        android:id="@+id/GameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_logo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:layout_marginBottom="@dimen/margin_top_and_bottom"
+        android:text="@string/play_game"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLeaderBoard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLeaderBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:text="@string/leaderboard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginTop="@dimen/margin_top_and_bottom"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:text="@string/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLeaderBoard" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
