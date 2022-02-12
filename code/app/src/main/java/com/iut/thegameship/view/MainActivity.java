@@ -2,6 +2,9 @@ package com.iut.thegameship.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.iut.thegameship.R;
@@ -50,5 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("Create","onCreate()");
+
+        final Button button = findViewById(R.id.buttonLeaderBoard);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.scores);
+            }
+        });
     }
+
 }

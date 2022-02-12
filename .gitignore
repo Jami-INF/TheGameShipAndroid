@@ -1,0 +1,9 @@
+
+.DS_Store
+.idea/modules.xml
+.idea/thegameshipandroid.iml
+.idea/vcs.xml
+.idea/workspace.xml
+code/build.gradle
+code/gradle/wrapper/gradle-wrapper.properties
+code/build.gradle
