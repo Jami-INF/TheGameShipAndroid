@@ -17,11 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.scores"
 
-            android:parentActivityName=".view.MainActivity">
-        <action android:name="android.intent.action."/>
+        <activity
+            android:name=".view.ScoresActivity" >
         </activity>
+
     </application>
 </manifest>

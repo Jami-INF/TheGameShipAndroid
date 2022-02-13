@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.game;
+/*package com.iut.thegameship.model.game;
 
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.util.input.IInput;
@@ -66,3 +66,4 @@ public class World implements IEntityCollection, ILifeCycle {
         thread.stop();//TODO: Voir si il n'y a pas un autre moyen car deprecated
     }
 }
+*/

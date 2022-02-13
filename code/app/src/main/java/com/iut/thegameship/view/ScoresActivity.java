@@ -9,14 +9,16 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.data.Stub;
 
-public class scores  extends MainActivity {
+
+public class ScoresActivity extends MainActivity {
+
     private ListView scores;
     private Stub modele;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class scores  extends MainActivity {
         Log.d("Create","onCreateScores()");
 
         scores = findViewById(R.id.scoresView);
-        scores.setAdapter(new ArrayAdapter(this, R.layout.cellule_score, modele.loadscoresTmp()));
+        scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
 
         final Button button = findViewById(R.id.backButton);
         button.setOnClickListener(new View.OnClickListener() {
