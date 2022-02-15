@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Entrez votre pseudo" />
+            android:hint="Tap to enter a name" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/buttonPlay"
