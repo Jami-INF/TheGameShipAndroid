@@ -1,6 +1,8 @@
 package com.iut.thegameship.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,16 +26,26 @@ public class ScoresActivity extends MainActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.scores);
         Log.d("Create","onCreateScores()");
 
-        scores = findViewById(R.id.scoresView);
-        scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
+        //scores = findViewById(R.id.scoresView);
+        //scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
 
         final Button button = findViewById(R.id.backButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
+
+                onBackPressed();
+                Log.d("Create",getIntent().getStringExtra("nickname"));
+
             }
         });
+    }
+
+    public static Intent newIntent(Context context, String nickname){
+        Intent intent = new Intent(context, ScoresActivity.class);
+        intent.putExtra("nickname", nickname);
+        return intent;
     }
 }

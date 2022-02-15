@@ -1,5 +1,6 @@
 package com.iut.thegameship.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,10 +55,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("Create","onCreate()");
 
-        final Button button = findViewById(R.id.buttonLeaderBoard);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button buttonLeaderBoard = findViewById(R.id.buttonLeaderBoard);
+        buttonLeaderBoard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setContentView(R.layout.scores);
+                Intent intent = ScoresActivity.newIntent(getBaseContext(), "jean");
+                startActivity(intent);
+            }
+        });
+        final Button buttonSettings = findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), ScoresActivity.class);
+                startActivity(intent);
             }
         });
     }
