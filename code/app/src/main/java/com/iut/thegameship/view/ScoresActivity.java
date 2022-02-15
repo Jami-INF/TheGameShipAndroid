@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -29,18 +30,11 @@ public class ScoresActivity extends MainActivity {
         setContentView(R.layout.scores);
         Log.d("Create","onCreateScores()");
 
+        final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
+        textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
         //scores = findViewById(R.id.scoresView);
         //scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
 
-        final Button button = findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                onBackPressed();
-                Log.d("Create",getIntent().getStringExtra("nickname"));
-
-            }
-        });
     }
 
     public static Intent newIntent(Context context, String nickname){

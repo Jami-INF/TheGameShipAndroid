@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.iut.thegameship.R;
 
 
@@ -55,18 +57,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("Create","onCreate()");
 
+        final Button buttonbuttonPlay = findViewById(R.id.buttonPlay);
+        buttonbuttonPlay.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TextInputLayout nicknameTextInput = findViewById(R.id.nicknameTextInput);
+                String nickname = nicknameTextInput.getEditText().getText().toString();
+                Intent intentbuttonPlay = GameActivity.newIntent(getBaseContext(), nickname);
+                startActivity(intentbuttonPlay);
+            }
+        });
         final Button buttonLeaderBoard = findViewById(R.id.buttonLeaderBoard);
         buttonLeaderBoard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = ScoresActivity.newIntent(getBaseContext(), "jean");
-                startActivity(intent);
+                TextInputLayout nicknameTextInput = findViewById(R.id.nicknameTextInput);
+                String nickname = nicknameTextInput.getEditText().getText().toString();
+                Intent intentLeaderBoard = ScoresActivity.newIntent(getBaseContext(), nickname);
+                startActivity(intentLeaderBoard);
             }
         });
         final Button buttonSettings = findViewById(R.id.buttonSettings);
         buttonSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), ScoresActivity.class);
-                startActivity(intent);
+                Intent intentSettings = SettingsActivity.newIntent(getBaseContext());
+                startActivity(intentSettings);
             }
         });
     }

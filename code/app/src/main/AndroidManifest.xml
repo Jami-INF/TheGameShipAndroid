@@ -21,6 +21,12 @@
         <activity
             android:name=".view.ScoresActivity" >
         </activity>
+        <activity
+            android:name=".view.GameActivity" >
+        </activity>
+        <activity
+            android:name=".view.SettingsActivity" >
+        </activity>
 
     </application>
 </manifest>

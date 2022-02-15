@@ -22,11 +22,27 @@
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="@dimen/main_logo"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPlay"
+        app:layout_constraintBottom_toTopOf="@+id/nicknameTextInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nicknameTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:layout_marginBottom="@dimen/margin_top_and_bottom"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez votre pseudo" />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/buttonPlay"
         android:layout_width="match_parent"
@@ -38,6 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonLeaderBoard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/buttonLeaderBoard"
@@ -62,5 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLeaderBoard" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
