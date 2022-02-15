@@ -11,7 +11,7 @@
         android:id="@+id/imageBackGround"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/mainbg"
+        app:srcCompat="@drawable/background_phone_format"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -22,10 +22,20 @@
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="@dimen/main_logo"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarVolume"
+        app:layout_constraintBottom_toTopOf="@+id/textseekBarVolume"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textseekBarVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume :"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarVolume"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <SeekBar
         android:id="@+id/seekBarVolume"
         android:layout_width="match_parent"
@@ -33,10 +43,19 @@
         android:layout_marginStart="@dimen/margin_button_left_and_right"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
         android:layout_marginBottom="@dimen/margin_top_and_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarDificulty"
+        app:layout_constraintBottom_toTopOf="@+id/textseekBarDificulty"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds"/>
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/textseekBarDificulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dificulty :"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarDificulty"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <SeekBar
         android:id="@+id/seekBarDificulty"
         android:layout_width="match_parent"
@@ -44,11 +63,20 @@
         android:layout_marginStart="@dimen/margin_button_left_and_right"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
         android:layout_marginBottom="@dimen/margin_top_and_bottom"
+        app:layout_constraintBottom_toTopOf="@+id/switchControl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <Switch
+        android:id="@+id/switchControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:layout_marginBottom="@dimen/margin_top_and_bottom"
         app:layout_constraintBottom_toTopOf="@+id/resetButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="DuplicateIds"/>
-
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/resetButton"
@@ -73,7 +101,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resetButton" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
