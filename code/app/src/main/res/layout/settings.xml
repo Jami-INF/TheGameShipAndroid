@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".UI.Activities.MainActivity">
 
     <ImageView
         android:id="@+id/imageBackGround"
@@ -32,7 +32,7 @@
         android:id="@+id/textseekBarDificulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dificulty :"
+        android:text="@string/difficulty"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/seekBarDificulty"
@@ -51,14 +51,15 @@
         app:layout_constraintBottom_toTopOf="@+id/textseekBarVolume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        android:min="1"
+        android:max="3" />
 
     <TextView
         android:id="@+id/textseekBarVolume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volume :"
+        android:text="@string/volume"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/switchControl"
@@ -71,7 +72,7 @@
         android:id="@+id/switchControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Switch"
+        android:text="ON/OFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,7 @@ import com.iut.thegameship.model.entity.componement.EComponementType;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.entity.componement.Speed;
-import com.iut.thegameship.model.util.input.ECommand;
+import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
 import com.iut.thegameship.model.entity.IEntity;

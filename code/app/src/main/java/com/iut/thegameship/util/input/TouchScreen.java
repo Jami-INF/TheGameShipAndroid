@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.util.input;
+package com.iut.thegameship.util.input;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.iut.thegameship.view;
+package com.iut.thegameship.UI.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
 import com.iut.thegameship.R;
-import com.iut.thegameship.data.Stub;
 
 public class SettingsActivity extends MainActivity{
     @SuppressLint("WrongViewCast")

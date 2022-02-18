@@ -3,7 +3,7 @@ package com.iut.thegameship.model.move;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Speed;
 import com.iut.thegameship.model.entity.IEntity;
-import com.iut.thegameship.model.util.input.ECommand;
+import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
 

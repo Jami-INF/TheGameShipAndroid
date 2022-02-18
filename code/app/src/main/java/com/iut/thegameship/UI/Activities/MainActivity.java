@@ -1,4 +1,4 @@
-package com.iut.thegameship.view;
+package com.iut.thegameship.UI.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;

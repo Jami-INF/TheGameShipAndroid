@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.util.data;
+package com.iut.thegameship.util.data;
 
 import java.util.ArrayList;
 import java.util.Date;

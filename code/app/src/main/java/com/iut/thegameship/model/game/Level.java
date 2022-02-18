@@ -12,11 +12,11 @@ import com.iut.thegameship.model.entity.componement.*;
 import com.iut.thegameship.model.move.IMove;
 import com.iut.thegameship.model.move.Move;
 import com.iut.thegameship.model.move.MoveEnemy;
-import com.iut.thegameship.model.util.input.ECommand;
-import com.iut.thegameship.model.util.input.IInput;
-import com.iut.thegameship.model.util.loop.IObserver;
-import com.iut.thegameship.model.util.loop.Loop;
-import com.iut.thegameship.model.util.loop.Timer;
+import com.iut.thegameship.util.input.ECommand;
+import com.iut.thegameship.util.input.IInput;
+import com.iut.thegameship.util.loop.IObserver;
+import com.iut.thegameship.util.loop.Loop;
+import com.iut.thegameship.util.loop.Timer;
 
 import java.util.ArrayList;
 import java.util.List;

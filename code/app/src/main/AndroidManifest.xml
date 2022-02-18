@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheGameShip">
         <activity
-            android:name=".view.MainActivity"
+            android:name=".UI.Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,13 +19,13 @@
         </activity>
 
         <activity
-            android:name=".view.ScoresActivity" >
+            android:name=".UI.Activities.ScoresActivity" >
         </activity>
         <activity
-            android:name=".view.GameActivity" >
+            android:name=".UI.Activities.GameActivity" >
         </activity>
         <activity
-            android:name=".view.SettingsActivity" >
+            android:name=".UI.Activities.SettingsActivity" >
         </activity>
 
     </application>

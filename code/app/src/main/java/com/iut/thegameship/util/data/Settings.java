@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.util.data;
+package com.iut.thegameship.util.data;
 
 public class Settings {
 

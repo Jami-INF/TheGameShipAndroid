@@ -1,5 +1,5 @@
-package com.iut.thegameship.model.util.input;/*
-package com.iut.thegameship.model.util.input;
+package com.iut.thegameship.util.input;/*
+package com.iut.thegameship.util.input;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;

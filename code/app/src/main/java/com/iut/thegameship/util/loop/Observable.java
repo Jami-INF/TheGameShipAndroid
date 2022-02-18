@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.util.loop;
+package com.iut.thegameship.util.loop;
 
 import java.util.LinkedList;
 

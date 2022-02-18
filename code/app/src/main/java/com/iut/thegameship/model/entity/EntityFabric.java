@@ -1,7 +1,7 @@
 package com.iut.thegameship.model.entity;
 
 import com.iut.thegameship.model.entity.componement.*;
-import com.iut.thegameship.model.util.input.ECommand;
+import com.iut.thegameship.util.input.ECommand;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.iut.thegameship.model.util.save;
+package com.iut.thegameship.util.save;
 
 import java.io.File;
 

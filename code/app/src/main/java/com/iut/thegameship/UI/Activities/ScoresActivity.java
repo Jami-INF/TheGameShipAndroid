@@ -1,31 +1,41 @@
-package com.iut.thegameship.view;
+package com.iut.thegameship.UI.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.iut.thegameship.R;
+import com.iut.thegameship.data.Stub;
 
-public class GameActivity extends MainActivity {
+
+public class ScoresActivity extends MainActivity {
+
+    private ListView scores;
+    private Stub modele;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+        setContentView(R.layout.scores);
         Log.d("Create","onCreateScores()");
 
         final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
-        textNickNameTest.setText("Vous etes : "+getIntent().getStringExtra("nickname"));
+        textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
+        //scores = findViewById(R.id.scoresView);
+        //scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
+
     }
 
     public static Intent newIntent(Context context, String nickname){
-        Intent intent = new Intent(context, GameActivity.class);
+        Intent intent = new Intent(context, ScoresActivity.class);
         intent.putExtra("nickname", nickname);
         return intent;
     }

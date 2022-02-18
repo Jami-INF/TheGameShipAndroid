@@ -1,7 +1,7 @@
-package com.iut.thegameship.model.util.save;/*package com.iut.thegameship.model.util.save;
+package com.iut.thegameship.util.save;/*package com.iut.thegameship.util.save;
 
-import com.iut.thegameship.model.util.data.HighScore;
-import com.iut.thegameship.model.util.data.Settings;
+import com.iut.thegameship.util.data.HighScore;
+import com.iut.thegameship.util.data.Settings;
 import java.io.*;
 
 public class PersistenceManager {

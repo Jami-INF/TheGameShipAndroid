@@ -1,9 +1,9 @@
 /*package com.iut.thegameship.model.game;
 
 import com.iut.thegameship.model.entity.IEntity;
-import com.iut.thegameship.model.util.input.IInput;
-import com.iut.thegameship.model.util.input.TouchScreen;
-import com.iut.thegameship.model.util.loop.Loop;
+import com.iut.thegameship.util.input.IInput;
+import com.iut.thegameship.util.input.TouchScreen;
+import com.iut.thegameship.util.loop.Loop;
 
 import java.util.Set;
 

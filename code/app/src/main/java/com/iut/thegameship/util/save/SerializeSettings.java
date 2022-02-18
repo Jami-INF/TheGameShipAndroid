@@ -1,6 +1,6 @@
-package com.iut.thegameship.model.util.save;
+package com.iut.thegameship.util.save;
 
-import com.iut.thegameship.model.util.data.Settings;
+import com.iut.thegameship.util.data.Settings;
 
 public class SerializeSettings {
 
