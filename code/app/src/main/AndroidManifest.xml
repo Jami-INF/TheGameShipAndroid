@@ -22,7 +22,8 @@
             android:name=".UI.Activities.ScoresActivity" >
         </activity>
         <activity
-            android:name=".UI.Activities.GameActivity" >
+            android:name=".UI.Activities.GameActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".UI.Activities.SettingsActivity" >

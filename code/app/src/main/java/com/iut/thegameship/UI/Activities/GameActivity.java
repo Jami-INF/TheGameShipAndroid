@@ -56,6 +56,8 @@ public class GameActivity extends MainActivity implements IObserver {
             layout_height = layout.getMeasuredHeight();
             layout_width = layout.getMeasuredWidth();
             String string = layout_width + " " + layout_height;
+            text.setX(layout_width/2 - (text_width/2));
+            text.setY(layout_height - (text_height * 2));
             Log.d("Game", string);
             layout.setOnTouchListener((view, motionEvent) -> {
                 text.setX(motionEvent.getX() - text_width/2);
@@ -81,9 +83,9 @@ public class GameActivity extends MainActivity implements IObserver {
                 Log.d("Tir", String.valueOf(listTir.size()));
                 timer.resetTimer();
                 TextView shoot = new TextView(this);
-                shoot.setText("X");
-                shoot.setY(text.getY() - text_height); // - text.getMeasuredHeight()
-                shoot.setX(text.getX() + (text_width/2) - 45); // - (shoot.getMeasuredWidth()/2)
+                shoot.setText("|");
+                shoot.setY(text.getY() - (text_height/2) + 5);  // Marge pour la beautée
+                shoot.setX(text.getX() + (text_width/2) - 5);   // Aucune idée de pourquoi ce n'est pas centré
                 listTir.add(shoot);
                 layout.addView(shoot);
                 //music.start();
