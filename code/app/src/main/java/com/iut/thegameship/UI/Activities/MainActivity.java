@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("Create","onCreate()");
 
-        final Button buttonbuttonPlay = findViewById(R.id.buttonPlay);
-        buttonbuttonPlay.setOnClickListener(new View.OnClickListener() {
+        /*final Button buttonPlay = findViewById(R.id.buttonPlay);
+        buttonPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 TextInputLayout nicknameTextInput = findViewById(R.id.nicknameTextInput);
                 String nickname = nicknameTextInput.getEditText().getText().toString();
@@ -81,6 +81,24 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentSettings = SettingsActivity.newIntent(getBaseContext());
                 startActivity(intentSettings);
             }
+        });*/
+
+        Button buttonPlay = findViewById(R.id.buttonPlay);
+        buttonPlay.setOnClickListener(e -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
+        });
+
+        Button buttonLeaderBoard = findViewById(R.id.buttonLeaderBoard);
+        buttonLeaderBoard.setOnClickListener(e -> {
+            Intent intent = new Intent(this, ScoresActivity.class);
+            startActivity(intent);
+        });
+
+        Button buttonSettings = findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener(e -> {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         });
     }
 }

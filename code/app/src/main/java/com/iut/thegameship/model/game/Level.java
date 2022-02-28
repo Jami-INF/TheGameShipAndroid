@@ -14,9 +14,7 @@ import com.iut.thegameship.model.move.Move;
 import com.iut.thegameship.model.move.MoveEnemy;
 import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.input.IInput;
-import com.iut.thegameship.util.loop.IObserver;
-import com.iut.thegameship.util.loop.Loop;
-import com.iut.thegameship.util.loop.Timer;
+import com.iut.thegameship.util.loop.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +47,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     private final ICollider colliderEnemy = new ColliderEnemy(getEntityCollection());
 
     private int score ;
-        public int getScore() { return score; }
-        public void setScore(int score) { this.score = score; }
+    public int getScore() { return score; }
+    public void setScore(int score) { this.score = score; }
 
     private double widthWindow;
     private double heightWindow;

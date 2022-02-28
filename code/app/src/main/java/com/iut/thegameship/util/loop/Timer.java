@@ -21,3 +21,4 @@ public class Timer implements IObserver {
         timer += millis;
     }
 }
+

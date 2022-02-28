@@ -1,9 +1,10 @@
-/*package com.iut.thegameship.model.game;
+package com.iut.thegameship.model.game;
 
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.util.input.IInput;
 import com.iut.thegameship.util.input.TouchScreen;
-import com.iut.thegameship.util.loop.Loop;
+import com.iut.thegameship.util.loop.*;
+
 
 import java.util.Set;
 
@@ -66,4 +67,3 @@ public class World implements IEntityCollection, ILifeCycle {
         thread.stop();//TODO: Voir si il n'y a pas un autre moyen car deprecated
     }
 }
-*/

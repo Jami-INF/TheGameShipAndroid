@@ -15,7 +15,7 @@ public class Collider implements ICollider { // Document : http://sdz.tdct.org/s
     public Collider(Set<IEntity> entities) {
         this.entities = entities;
     }
-
+    //La collision ne doit pas porter ses propres informations
     @Override
     public ColliderInfo isCollision(double nextX, double nextY, double height, double width, UUID id,double heightWindow, double widthWindow) {
         boolean scene = isCollisionScene(nextX, nextY, height, width, heightWindow, widthWindow);
