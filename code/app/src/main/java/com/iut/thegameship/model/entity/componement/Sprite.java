@@ -3,12 +3,12 @@ package com.iut.thegameship.model.entity.componement;
 public class Sprite extends  Componement{
 
     private String sprite;
-        public String getSprite() { return sprite; }
-        public void setSprite(String sprite) { this.sprite = sprite; }
+    public String getSprite() { return sprite; }
+    public void setSprite(String sprite) { this.sprite = sprite; }
 
     private boolean visible ;
-        public boolean getVisible() { return visible; }
-        public void setVisible(boolean visible) { this.visible = visible; }
+    public boolean getVisible() { return visible; }
+    public void setVisible(boolean visible) { this.visible = visible; }
 
     public Sprite(String sprite){
         super(EComponementType.Sprite);
@@ -22,6 +22,6 @@ public class Sprite extends  Componement{
     }
 
     public static Sprite cast(IHasComponements e){
-            return (Sprite) e.getComponement(EComponementType.Sprite);
+        return (Sprite) e.getComponement(EComponementType.Sprite);
     }
 }

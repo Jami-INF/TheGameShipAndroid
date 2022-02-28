@@ -81,7 +81,7 @@ public class GameActivity extends MainActivity implements IObserver {
                 Log.d("Tir", String.valueOf(listTir.size()));
                 timer.resetTimer();
                 TextView shoot = new TextView(this);
-                shoot.setText("piou !");
+                shoot.setText("X");
                 shoot.setY(text.getY() - text_height); // - text.getMeasuredHeight()
                 shoot.setX(text.getX() + (text_width/2) - 45); // - (shoot.getMeasuredWidth()/2)
                 listTir.add(shoot);

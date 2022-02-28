@@ -12,7 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.iut.thegameship.R;
 
-public class SettingsActivity extends MainActivity{
+public class SettingsActivity extends MainActivity {
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,36 +1,36 @@
 package com.iut.thegameship.model.entity.componement;
 
-public class Location extends Componement {
+public class Location extends Componement { //N'est pas sencé être un compoenent
 
     private double x;
-        public double getX() {
+    public double getX() {
         return x;
     }
-        public void setX(double x) {
+    public void setX(double x) {
         this.x = x;
     }
 
     private double y;
-        public double getY() {
+    public double getY() {
         return y;
     }
-        public void setY(double y) {
+    public void setY(double y) {
         this.y = y;
     }
 
     private double width;
-        public double getWidth() {
+    public double getWidth() {
         return width;
     }
-        public void setWidth(double width) {
-            this.width = width;
-        }
+    public void setWidth(double width) {
+        this.width = width;
+    }
 
     private double height;
-        public double getHeight() {
+    public double getHeight() {
         return height;
     }
-        public void setHeight(double height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
