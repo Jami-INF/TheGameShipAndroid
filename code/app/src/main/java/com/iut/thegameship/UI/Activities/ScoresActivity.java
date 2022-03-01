@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,12 +13,16 @@ import androidx.annotation.Nullable;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.data.Stub;
+import com.iut.thegameship.model.score.Score;
+
+import java.util.ArrayList;
 
 
 public class ScoresActivity extends MainActivity {
 
-    private ListView scores;
-    private Stub modele;
+    private ListView scoresList;
+    private Stub modele = new Stub();
+    private ArrayList<Score> scores = new ArrayList<>();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -27,10 +32,15 @@ public class ScoresActivity extends MainActivity {
         setContentView(R.layout.scores);
         Log.d("Create","onCreateScores()");
 
-        final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
-        textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
-        //scores = findViewById(R.id.scoresView);
-        //scores.setAdapter(new ArrayAdapter(this, R.layout.score_field, modele.loadscoresTmp()));
+        //final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
+        //textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
+        scoresList = findViewById(R.id.scoresListView);
+
+        scores = modele.loadscoresTmp();
+
+
+        ArrayAdapter adapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, scores);
+        scoresList.setAdapter(adapter);
 
     }
 

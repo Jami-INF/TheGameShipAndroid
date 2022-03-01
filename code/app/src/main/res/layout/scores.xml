@@ -7,26 +7,20 @@
     android:layout_height="match_parent">
     tools:context=".view.scores">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageBackGround"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:visibility="visible"
         app:srcCompat="@drawable/background_phone_format"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TextView
-        android:id="@+id/nicknamebindtest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteX="0dp" />-->
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scoresView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoresListView"
+        android:textColor="#000000"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
