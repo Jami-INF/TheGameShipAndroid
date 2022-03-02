@@ -1,9 +1,11 @@
 package com.iut.thegameship.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,11 +30,14 @@ public class ArrayToView extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LinearLayout layoutScore = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.score_field, parent, false);
+        return new ViewHolderScore(layoutScore);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Score scoreCourant = scores.get(position);
+        ((ViewHolderScore)holder).getTextViewScore().setText(scoreCourant.getPseudo() + " --- " + scoreCourant.getTimeSec());
 
     }
 

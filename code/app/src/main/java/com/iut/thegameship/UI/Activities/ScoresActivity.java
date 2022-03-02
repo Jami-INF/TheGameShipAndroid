@@ -10,17 +10,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.iut.thegameship.R;
+import com.iut.thegameship.adapter.ArrayToView;
 import com.iut.thegameship.data.Stub;
 import com.iut.thegameship.model.score.Score;
 
 import java.util.ArrayList;
 
 
-public class ScoresActivity extends MainActivity {
+public class ScoresActivity extends AppCompatActivity {
 
-    private ListView scoresList;
+    private RecyclerView scoresRecyclerView;
+    private ScoresActivity mainActivity;
     private Stub modele = new Stub();
     private ArrayList<Score> scores = new ArrayList<>();
 
@@ -34,13 +39,17 @@ public class ScoresActivity extends MainActivity {
 
         //final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
         //textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
-        scoresList = findViewById(R.id.scoresListView);
+
+        //mainActivity = (ScoresActivity) scoresRecyclerView.getContext();
+
+        scoresRecyclerView = findViewById(R.id.scoresRecyclerView);
 
         scores = modele.loadscoresTmp();
+        scoresRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        scoresRecyclerView.setAdapter(new ArrayToView(scores));
 
-
-        ArrayAdapter adapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, scores);
-        scoresList.setAdapter(adapter);
+        //ArrayAdapter adapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, scores);
+        //scoresList.setAdapter(adapter);
 
     }
 
