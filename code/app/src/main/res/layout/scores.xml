@@ -13,8 +13,19 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:srcCompat="@drawable/background_phone_format"
-        tools:layout_editor_absoluteX="0dp" />
+        app:srcCompat="@drawable/background_phone_format" />
+
+    <TextView
+        android:id="@+id/LeaderBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/leaderboard"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scoresRecyclerView"

@@ -6,11 +6,11 @@
 
     <TextView
         android:id="@+id/scoreText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/gray"
-        android:textSize="120px"
+        android:textSize="@dimen/sub_title"
         android:textStyle="bold|italic"
         tools:ignore="MissingConstraints" />
 </LinearLayout>

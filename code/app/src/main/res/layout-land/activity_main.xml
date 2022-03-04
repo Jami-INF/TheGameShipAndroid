@@ -17,10 +17,10 @@
         android:id="@+id/GameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="@dimen/main_logo"
-        app:layout_constraintBottom_toTopOf="@+id/nicknameTextInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,28 +31,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_button_left_and_right"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
-        android:layout_marginBottom="@dimen/margin_top_and_bottom"
         app:layout_constraintBottom_toTopOf="@+id/buttonPlay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GameName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Tap to enter a name" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
     <Button
         android:id="@+id/buttonPlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_button_left_and_right"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
-        android:layout_marginBottom="@dimen/margin_top_and_bottom"
+        android:layout_marginBottom="8dp"
         android:text="@string/play_game"
         app:layout_constraintBottom_toTopOf="@+id/buttonLeaderBoard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <Button
         android:id="@+id/buttonLeaderBoard"
@@ -60,23 +62,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_button_left_and_right"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
+
+        android:layout_marginBottom="8dp"
         android:text="@string/leaderboard"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_button_left_and_right"
-        android:layout_marginTop="@dimen/margin_top_and_bottom"
         android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:layout_marginBottom="16dp"
         android:text="@string/settings"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBackGround"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLeaderBoard" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
