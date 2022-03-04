@@ -1,70 +1,97 @@
 package com.iut.thegameship.UI.Activities;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
+import com.iut.thegameship.model.entity.IEntity;
+import com.iut.thegameship.model.entity.componement.Location;
+import com.iut.thegameship.model.entity.componement.Sprite;
+import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.loop.*;
-
-import java.util.ArrayList;
 
 public class GameActivity extends MainActivity implements IObserver {
 
-    ArrayList<TextView> listTir = new ArrayList<>();
     ConstraintLayout layout;
-    TextView text;
-    Timer timer;
-    Loop loop = new Loop(10);
-    int text_width;
-    int text_height;
     int layout_width;
     int layout_height;
-    //MediaPlayer music;
 
-    //@SuppressLint("WrongViewCast")
+    Timer timer;
+    Loop loop;
+    Thread thread;
+
+    ImageView spaceShip;
+    int spaceShip_width;
+    int spaceShip_height;
+
+    MediaPlayer music;
+
+    World world;
+    IEntity player;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        Thread thread = new Thread(loop);
-        timer = new Timer(loop);
-
-        text = findViewById(R.id.textMovable);
         layout = findViewById(R.id.gameView);
-        //music = MediaPlayer.create(this, R.raw.shoot);
+        music = MediaPlayer.create(this, R.raw.shoot);
 
+        this.world = new World(layout_width, layout_height);
+        world.init();
+        loop = world.loop;
+
+        timer = new Timer(loop);
         loop.subscribe(this);
         loop.subscribe(timer);
-        thread.start();
 
-        //final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
-        //textNickNameTest.setText("Vous etes : "+getIntent().getStringExtra("nickname"));
+        layout.post(() ->{
+            layout_height = layout.getMeasuredHeight();
+            layout_width = layout.getMeasuredWidth();
+        });
+        spaceShip.setRotation(-90);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        text.post(() -> {
-            text_height = text.getMeasuredHeight();
-            text_width = text.getMeasuredWidth();
-            layout_height = layout.getMeasuredHeight();
-            layout_width = layout.getMeasuredWidth();
-            String string = layout_width + " " + layout_height;
-            text.setX(layout_width/2 - (text_width/2));
-            text.setY(layout_height - (text_height * 2));
-            Log.d("Game", string);
-            layout.setOnTouchListener((view, motionEvent) -> {
-                text.setX(motionEvent.getX() - text_width/2);
-                text.setY(motionEvent.getY() - text_height/2);
-                return true;
-            });
+        player = world.getPlayer();
+        int resID = getResources().getIdentifier(Sprite.cast(player).getSprite() , "drawable" , getPackageName());
+        spaceShip.setImageDrawable(getResources().getDrawable(resID));
+
+        Location l = Location.cast(player);
+        spaceShip.setX((float) l.getX());
+        spaceShip.setY((float) l.getY());
+
+        spaceShip.post(() -> {
+            spaceShip_height = spaceShip.getMeasuredHeight();
+            spaceShip_width = spaceShip.getMeasuredWidth();
         });
+        world.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        loop.StopLoop();
+        thread.interrupt();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        thread = new Thread(loop);
+        thread.start();
+        loop.RestartLoop();
     }
 
     @Override
@@ -76,19 +103,29 @@ public class GameActivity extends MainActivity implements IObserver {
     @Override
     public void update() {
         runOnUiThread(() -> {
-            for (TextView text : listTir) {
-                text.setY(text.getY() - 5);
+            for (int index=0; index < ((ViewGroup) layout).getChildCount(); index++) {
+                View childView = ((ViewGroup) layout).getChildAt(index);
+                if (childView instanceof  TextView) {
+                    TextView child = (TextView) childView;
+                    if (child.equals(spaceShip)) {
+                        continue;
+                    }
+                    child.setY(child.getY() - 5);
+                    if (child.getY() < -(spaceShip_height * 2)) {
+                        layout.removeView(child);
+                    }
+                }
             }
             if (timer.getTimer() > 1000) {
-                Log.d("Tir", String.valueOf(listTir.size()));
                 timer.resetTimer();
+
                 TextView shoot = new TextView(this);
                 shoot.setText("|");
-                shoot.setY(text.getY() - (text_height/2) + 5);  // Marge pour la beautée
-                shoot.setX(text.getX() + (text_width/2) - 5);   // Aucune idée de pourquoi ce n'est pas centré
-                listTir.add(shoot);
+                shoot.setX(spaceShip.getX() - (spaceShip_width/2)- 45);
+                shoot.setY(spaceShip.getY() - (spaceShip_height/4));
+
                 layout.addView(shoot);
-                //music.start();
+                music.start();
             }
             layout.invalidate();
         });

@@ -38,7 +38,7 @@ public class EntityFabric {
 
     public Entity createEnemy(double x, double y, double height, double width) {
         String name = "Shoot" + getEnemyNumber();
-        return createEnemy(name, "/Sprites/Enemy.png", height, width, 5, x, y);
+        return createEnemy(name, "/Sprites/enemy.png", height, width, 5, x, y);
     }
 
     public IEntity createShoot(UUID ownerId, Location l, ECommand direction) {
