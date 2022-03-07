@@ -19,22 +19,22 @@ import com.iut.thegameship.util.loop.*;
 
 public class GameActivity extends MainActivity implements IObserver {
 
-    ConstraintLayout layout;
-    int layout_width;
-    int layout_height;
+    private ConstraintLayout layout;
+    private int layoutWidth;
+    private int layoutHeight;
 
-    Timer timer;
-    Loop loop;
-    Thread thread;
+    private Timer timer;
+    private Loop loop;
+    private Thread thread;
 
-    ImageView spaceShip;
-    int spaceShip_width;
-    int spaceShip_height;
+    private ImageView spaceShip;
+    private int spaceShipWidth;
+    private int spaceShipHeight;
 
-    MediaPlayer music;
+    private MediaPlayer music;
 
-    World world;
-    IEntity player;
+    private World world;
+    private IEntity player;
 
 
     @Override
@@ -47,7 +47,7 @@ public class GameActivity extends MainActivity implements IObserver {
         spaceShip = findViewById(R.id.spaceShip);
         music = MediaPlayer.create(this, R.raw.shoot);
 
-        this.world = new World(layout_width, layout_height);
+        this.world = new World(layoutWidth, layoutHeight);
         world.init();
         loop = world.loop;
 
@@ -56,8 +56,8 @@ public class GameActivity extends MainActivity implements IObserver {
         loop.subscribe(timer);
 
         layout.post(() ->{
-            layout_height = layout.getMeasuredHeight();
-            layout_width = layout.getMeasuredWidth();
+            layoutHeight = layout.getMeasuredHeight();
+            layoutWidth = layout.getMeasuredWidth();
         });
         spaceShip.setRotation(-90);
     }
@@ -77,8 +77,8 @@ public class GameActivity extends MainActivity implements IObserver {
         // Trouver une solution pour faire ça bien plus proprement !
 
         spaceShip.post(() -> {
-            spaceShip_height = spaceShip.getMeasuredHeight();   // Peut être à modifier pour s'adapter à la taille défini par le constructeur?
-            spaceShip_width = spaceShip.getMeasuredWidth();
+            spaceShipHeight = spaceShip.getMeasuredHeight();   // Peut être à modifier pour s'adapter à la taille défini par le constructeur?
+            spaceShipWidth = spaceShip.getMeasuredWidth();
         });
         world.start();
     }
@@ -115,7 +115,7 @@ public class GameActivity extends MainActivity implements IObserver {
                         continue;
                     }
                     child.setY(child.getY() - 5);
-                    if (child.getY() < -(spaceShip_height * 2)) {
+                    if (child.getY() < -(spaceShipHeight * 2)) {
                         layout.removeView(child);
                     }
                 }
@@ -125,8 +125,8 @@ public class GameActivity extends MainActivity implements IObserver {
 
                 TextView shoot = new TextView(this);
                 shoot.setText("|");
-                shoot.setX(spaceShip.getX() + (spaceShip_width/2) - 4);     // Largeur du projectile
-                shoot.setY(spaceShip.getY() - (spaceShip_height/4));
+                shoot.setX(spaceShip.getX() + (spaceShipWidth /2) - 4);     // Largeur du projectile
+                shoot.setY(spaceShip.getY() - (spaceShipHeight /4));
 
                 layout.addView(shoot);
                 music.start();
