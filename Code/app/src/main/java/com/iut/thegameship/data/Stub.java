@@ -1,7 +1,5 @@
 package com.iut.thegameship.data;
 
-import android.util.Log;
-
 import com.iut.thegameship.model.score.Score;
 
 import java.util.ArrayList;
@@ -15,6 +13,5 @@ public class Stub {
         scores.add(new Score("George",(float) 74.555));
         scores.add(new Score("Julien",(float) 85.548));
         return scores;
-
     }
 }
