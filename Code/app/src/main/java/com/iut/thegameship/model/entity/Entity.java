@@ -2,7 +2,11 @@ package com.iut.thegameship.model.entity;
 
 import com.iut.thegameship.model.entity.componement.Componement;
 import com.iut.thegameship.model.entity.componement.EComponementType;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 
 public class Entity extends Componement implements IEntity {
 

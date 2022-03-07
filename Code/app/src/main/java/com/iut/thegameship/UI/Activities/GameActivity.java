@@ -1,7 +1,6 @@
 package com.iut.thegameship.UI.Activities;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -68,13 +67,13 @@ public class GameActivity extends MainActivity implements IObserver {
         Button buttonLeft = findViewById(R.id.goLeft);
         buttonLeft.setOnTouchListener((e, motionEvent) -> {
             System.out.println(motionEvent.getAction());
-            spaceShip.setX(spaceShip.getX() - 10);   // A perfectionner
+            spaceShip.setX(spaceShip.getX());   // A refaire pck c'est à chier
             return false;
         });
 
         Button buttonRight = findViewById(R.id.goRight);
         buttonRight.setOnTouchListener((e, motionEvent) -> {
-            spaceShip.setX(spaceShip.getX() + 10);   // A perfectionner
+            spaceShip.setX(spaceShip.getX() + 10);   // A refaire pck c'est à chier
             return false;
         });
     }
