@@ -7,12 +7,20 @@
     android:id="@+id/gameView">
 
     <ImageView
+        android:id="@+id/imageBackGround"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:srcCompat="@drawable/background_phone_format" />
+
+    <ImageView
         android:id="@+id/spaceShip"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imageBackGround"
+        app:layout_constraintStart_toStartOf="@+id/imageBackGround" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

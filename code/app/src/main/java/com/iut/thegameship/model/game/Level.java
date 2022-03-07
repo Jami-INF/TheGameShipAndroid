@@ -67,7 +67,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         timer3 = new Timer(loop);
 
         //ENTITIES
-        player = (entityFabric.createPlayer("Vaisseau", "/Sprites/spaceship.png", 70, 70, 6 , 0, 250, 10, 10));
+        player = (entityFabric.createPlayer("Vaisseau", "spaceship", 60, 60, 3 , 0, 0, 10, 0));
         //player = (entityFabric.createPlayer("Vaisseau", "/Sprites/Spaceship.png", 70, 70, 6 - Launcher.getPersistenceManager().getSettings().getDifficulty(), 0, 250, 10, 10));
         entityManager.addEntity(player);
         createNewWave(1,2,0);
@@ -168,7 +168,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             for (IEntity e : listToBurn) {
                 entityManager.removeEntity(e);
             }
-
             createNewWave(1, 2, 10000);
         } catch (Exception err) {
             err.printStackTrace();

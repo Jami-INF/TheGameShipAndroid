@@ -3,13 +3,11 @@ package com.iut.thegameship.UI.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.iut.thegameship.R;
 
 
@@ -54,34 +52,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.menu);
         Log.d("Create","onCreate()");
-
-        /*final Button buttonPlay = findViewById(R.id.buttonPlay);
-        buttonPlay.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                TextInputLayout nicknameTextInput = findViewById(R.id.nicknameTextInput);
-                String nickname = nicknameTextInput.getEditText().getText().toString();
-                Intent intentbuttonPlay = GameActivity.newIntent(getBaseContext(), nickname);
-                startActivity(intentbuttonPlay);
-            }
-        });
-        final Button buttonLeaderBoard = findViewById(R.id.buttonLeaderBoard);
-        buttonLeaderBoard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                TextInputLayout nicknameTextInput = findViewById(R.id.nicknameTextInput);
-                String nickname = nicknameTextInput.getEditText().getText().toString();
-                Intent intentLeaderBoard = ScoresActivity.newIntent(getBaseContext(), nickname);
-                startActivity(intentLeaderBoard);
-            }
-        });
-        final Button buttonSettings = findViewById(R.id.buttonSettings);
-        buttonSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentSettings = SettingsActivity.newIntent(getBaseContext());
-                startActivity(intentSettings);
-            }
-        });*/
 
         Button buttonPlay = findViewById(R.id.buttonPlay);
         buttonPlay.setOnClickListener(e -> {

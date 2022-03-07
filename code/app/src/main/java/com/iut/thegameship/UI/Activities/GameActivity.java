@@ -44,6 +44,7 @@ public class GameActivity extends MainActivity implements IObserver {
         setContentView(R.layout.game);
 
         layout = findViewById(R.id.gameView);
+        spaceShip = findViewById(R.id.spaceShip);
         music = MediaPlayer.create(this, R.raw.shoot);
 
         this.world = new World(layout_width, layout_height);
@@ -65,6 +66,7 @@ public class GameActivity extends MainActivity implements IObserver {
     protected void onStart() {
         super.onStart();
         player = world.getPlayer();
+
         int resID = getResources().getIdentifier(Sprite.cast(player).getSprite() , "drawable" , getPackageName());
         spaceShip.setImageDrawable(getResources().getDrawable(resID));
 
@@ -72,8 +74,10 @@ public class GameActivity extends MainActivity implements IObserver {
         spaceShip.setX((float) l.getX());
         spaceShip.setY((float) l.getY());
 
+        // Trouver une solution pour faire ça bien plus proprement !
+
         spaceShip.post(() -> {
-            spaceShip_height = spaceShip.getMeasuredHeight();
+            spaceShip_height = spaceShip.getMeasuredHeight();   // Peut être à modifier pour s'adapter à la taille défini par le constructeur?
             spaceShip_width = spaceShip.getMeasuredWidth();
         });
         world.start();
@@ -121,7 +125,7 @@ public class GameActivity extends MainActivity implements IObserver {
 
                 TextView shoot = new TextView(this);
                 shoot.setText("|");
-                shoot.setX(spaceShip.getX() - (spaceShip_width/2)- 45);
+                shoot.setX(spaceShip.getX() + (spaceShip_width/2) - 4);     // Largeur du projectile
                 shoot.setY(spaceShip.getY() - (spaceShip_height/4));
 
                 layout.addView(shoot);
