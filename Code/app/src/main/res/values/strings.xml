@@ -2,6 +2,8 @@
     <string name="app_name">TheGameShip</string>
     <string name="back">Back</string>
     <string name="difficulty">Difficulty</string>
+    <string name="directionLeft">LEFT</string>
+    <string name="directionRight">RIGHT</string>
     <string name="leaderboard">Leader Board</string>
     <string name="play_game">Play</string>
     <string name="reset">Reset</string>

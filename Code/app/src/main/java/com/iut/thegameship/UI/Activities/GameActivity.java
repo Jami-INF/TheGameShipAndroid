@@ -1,9 +1,12 @@
 package com.iut.thegameship.UI.Activities;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +40,7 @@ public class GameActivity extends MainActivity implements IObserver {
     private IEntity player;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -60,6 +64,19 @@ public class GameActivity extends MainActivity implements IObserver {
             layoutWidth = layout.getMeasuredWidth();
         });
         spaceShip.setRotation(-90);
+
+        Button buttonLeft = findViewById(R.id.goLeft);
+        buttonLeft.setOnTouchListener((e, motionEvent) -> {
+            System.out.println(motionEvent.getAction());
+            spaceShip.setX(spaceShip.getX() - 10);   // A perfectionner
+            return false;
+        });
+
+        Button buttonRight = findViewById(R.id.goRight);
+        buttonRight.setOnTouchListener((e, motionEvent) -> {
+            spaceShip.setX(spaceShip.getX() + 10);   // A perfectionner
+            return false;
+        });
     }
 
     @Override
@@ -109,17 +126,20 @@ public class GameActivity extends MainActivity implements IObserver {
         runOnUiThread(() -> {
             for (int index=0; index < ((ViewGroup) layout).getChildCount(); index++) {
                 View childView = ((ViewGroup) layout).getChildAt(index);
-                if (childView instanceof  TextView) {
+                if (childView instanceof TextView) {
                     TextView child = (TextView) childView;
                     if (child.equals(spaceShip)) {
                         continue;
                     }
-                    child.setY(child.getY() - 5);
+                    if (child.getText() == "|") {
+                        child.setY(child.getY() - 5);
+                    }
                     if (child.getY() < -(spaceShipHeight * 2)) {
                         layout.removeView(child);
                     }
                 }
             }
+
             if (timer.getTimer() > 1000) {
                 timer.resetTimer();
 

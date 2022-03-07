@@ -4,4 +4,6 @@
     <dimen name="sub_title">30dp</dimen>
     <dimen name="margin_button_left_and_right">64dp</dimen>
     <dimen name="margin_top_and_bottom">16dp</dimen>
+    <dimen name="margin_side_control">48dp</dimen>
+    <dimen name="margin_height_control">32dp</dimen>
 </resources>
