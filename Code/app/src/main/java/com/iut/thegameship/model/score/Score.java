@@ -24,4 +24,5 @@ public class Score {
     public void setTimeSec(float timeSec) {
         this.timeSec = timeSec;
     }
+
 }

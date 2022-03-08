@@ -1,8 +1,12 @@
 package com.iut.thegameship.UI.Activities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,11 +17,20 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
+import com.iut.thegameship.data.FileLoader;
+import com.iut.thegameship.data.FileSaver;
+import com.iut.thegameship.data.ILoad;
+import com.iut.thegameship.data.ISave;
+import com.iut.thegameship.data.Stub;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
+import com.iut.thegameship.model.score.Score;
 import com.iut.thegameship.util.loop.*;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class GameActivity extends MainActivity implements IObserver {
 
@@ -38,6 +51,14 @@ public class GameActivity extends MainActivity implements IObserver {
     private World world;
     private IEntity player;
 
+    public static final String PATHToScores = "scores";
+    private ISave save = new FileSaver();
+    private ILoad loader;
+    private Stub modele = new Stub();
+    private ArrayList<Score> scores = null;//a voir si ça reste ici
+
+
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -49,6 +70,15 @@ public class GameActivity extends MainActivity implements IObserver {
         layout = findViewById(R.id.gameView);
         spaceShip = findViewById(R.id.spaceShip);
         music = MediaPlayer.create(this, R.raw.shoot);
+
+        loader = new FileLoader();
+        try {
+            scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
+        } catch (FileNotFoundException e) {
+        }
+        if (scores == null) {
+            scores = (ArrayList<Score>) modele.load(null);
+        }
 
         this.world = new World(layoutWidth, layoutHeight);
         world.init();
@@ -80,7 +110,14 @@ public class GameActivity extends MainActivity implements IObserver {
 
     @Override
     protected void onStart() {
+
         super.onStart();
+        String nickname = getIntent().getStringExtra("nickname");
+        if(nickname.equals("")){
+            nickname = "guest";
+        }
+        scores.add(new Score(nickname, (float) 0));//Score test
+
         player = world.getPlayer();
 
         int resID = getResources().getIdentifier(Sprite.cast(player).getSprite() , "drawable" , getPackageName());
@@ -118,6 +155,17 @@ public class GameActivity extends MainActivity implements IObserver {
     protected void onStop() {
         super.onStop();
         loop.StopLoop();
+        try {
+            save.save(openFileOutput(PATHToScores, MODE_PRIVATE), scores);
+            System.out.println("save ok");
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                scores.forEach((n) -> System.out.println(n.getPseudo()));
+            }*/
+
+        } catch (FileNotFoundException e) {
+
+            Log.e(getPackageName(), "save failed");
+        }
     }
 
     @Override
@@ -153,4 +201,10 @@ public class GameActivity extends MainActivity implements IObserver {
             layout.invalidate();
         });
     }
+    public static Intent newIntent(Context context, String nickname){
+        Intent intent = new Intent(context, GameActivity.class);
+        intent.putExtra("nickname",nickname);
+        return intent;
+    }
+
 }
