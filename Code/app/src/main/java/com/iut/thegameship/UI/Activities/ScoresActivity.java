@@ -13,18 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.adapter.ArrayToView;
+import com.iut.thegameship.data.FileLoader;
+import com.iut.thegameship.data.FileSaver;
+import com.iut.thegameship.data.ILoad;
+import com.iut.thegameship.data.ISave;
 import com.iut.thegameship.data.Stub;
 import com.iut.thegameship.model.score.Score;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
 public class ScoresActivity extends AppCompatActivity {
 
+    public static final String PATHToScores = "scores";
+    private ISave save = new FileSaver();
+    private ILoad loader;
     private RecyclerView scoresRecyclerView;
     private ScoresActivity mainActivity;
     private Stub modele = new Stub();
-    private ArrayList<Score> scores = new ArrayList<>();
+
+    private ArrayList<Score> scores = null;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -37,17 +46,34 @@ public class ScoresActivity extends AppCompatActivity {
         //final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
         //textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
 
-        //mainActivity = (ScoresActivity) scoresRecyclerView.getContext();
+        loader = new FileLoader();
+        try {
+            scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
+        } catch (FileNotFoundException e) {
+        }
 
+        if (scores == null) {
+            scores = (ArrayList<Score>) modele.load(null);
+        }
         scoresRecyclerView = findViewById(R.id.scoresRecyclerView);
 
-        scores = modele.loadscoresTmp();
+        //scores = modele.loadscoresTmp();
+        System.out.println("scores :");
+        System.out.println(scores);
         scoresRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         scoresRecyclerView.setAdapter(new ArrayToView(scores));
 
-        //ArrayAdapter adapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, scores);
-        //scoresList.setAdapter(adapter);
+    }
+    @Override
+    protected void onStop() {
+        try {
+            save.save(openFileOutput(PATHToScores, MODE_PRIVATE), scores);
+        } catch (FileNotFoundException e) {
+            Log.e(getPackageName(), "save failed");
+        }
 
+        super.onStop();
+        Log.d("Stop","onStop()");
     }
 
     public static Intent newIntent(Context context, String nickname){
