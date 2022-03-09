@@ -58,8 +58,6 @@ public class GameActivity extends MainActivity implements IObserver {
     private ArrayList<Score> scores = null;//a voir si ça reste ici
 
 
-
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +73,7 @@ public class GameActivity extends MainActivity implements IObserver {
         try {
             scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
         } catch (FileNotFoundException e) {
+            System.out.println(e);
         }
         if (scores == null) {
             scores = (ArrayList<Score>) modele.load(null);
@@ -164,7 +163,6 @@ public class GameActivity extends MainActivity implements IObserver {
 
         } catch (FileNotFoundException e) {
 
-            Log.e(getPackageName(), "save failed");
         }
     }
 

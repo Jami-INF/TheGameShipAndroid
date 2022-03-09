@@ -9,8 +9,8 @@ import java.io.Serializable;
 public class FileSaver implements ISave {
     @Override
     public void save(FileOutputStream file, Serializable toSave) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(file)) {
-            oos.writeObject(toSave);
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(file)) {
+            objectOutputStream.writeObject(toSave);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

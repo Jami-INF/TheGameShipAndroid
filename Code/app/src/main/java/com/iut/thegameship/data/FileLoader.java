@@ -14,8 +14,8 @@ public class FileLoader implements ILoad {
     @Override
     public Serializable load(@NonNull FileInputStream file) {
         Serializable serializable = null;
-        try (ObjectInputStream ois = new ObjectInputStream(file)) {
-            serializable  = (Serializable) ois.readObject();
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(file)) {
+            serializable  = (Serializable) objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
