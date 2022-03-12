@@ -8,23 +8,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Stub  implements ILoad {
-    /*public ArrayList<Score> loadscoresTmp() {
-        ArrayList<Score> scores = new ArrayList<>();
-        scores.add(new Score("Jean", (float) 15.555));
-        scores.add(new Score("Pierre",(float) 32.855));
-        scores.add(new Score("Martin",(float) 12.558));
-        scores.add(new Score("George",(float) 74.555));
-        scores.add(new Score("Julien",(float) 85.548));
-        return scores;
-    }*/
     @Override
     public Serializable load(FileInputStream file) {
         ArrayList<Score> scores = new ArrayList<>();
-        scores.add(new Score("Jean", (float) 15.555));
-        scores.add(new Score("Pierre",(float) 32.855));
-        scores.add(new Score("Martin",(float) 12.558));
-        scores.add(new Score("George",(float) 74.555));
-        scores.add(new Score("Julien",(float) 85.548));
+        scores.add(new Score("Jean", 15.555, 1));
+        scores.add(new Score("Pierre",32.855, 2));
+        scores.add(new Score("Martin",12.558, 1));
+        scores.add(new Score("George",74.555,3));
+        scores.add(new Score("Julien",85.548, 3));
         return scores;
     }
 }

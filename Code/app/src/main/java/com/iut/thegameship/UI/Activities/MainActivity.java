@@ -76,11 +76,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         });
-        Button buttonTestEndGame = findViewById(R.id.buttonTestEndGame);
-        buttonTestEndGame.setOnClickListener(e -> {
-            Intent intent = EndGameActivity.newIntent(this, "nickname", 50.00);
-            startActivity(intent);
-        });
+
 
 
     }

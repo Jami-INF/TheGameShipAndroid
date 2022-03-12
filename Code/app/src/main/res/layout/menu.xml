@@ -79,16 +79,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLeaderBoard" />
 
-    <Button
-        android:id="@+id/buttonTestEndGame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_button_left_and_right"
-        android:layout_marginTop="@dimen/margin_top_and_bottom"
-        android:layout_marginEnd="@dimen/margin_button_left_and_right"
-        android:text="@string/play_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

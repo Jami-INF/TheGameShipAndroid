@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/gameView">
@@ -23,6 +24,17 @@
         app:layout_constraintEnd_toEndOf="@+id/imageBackGround"
         app:layout_constraintStart_toStartOf="@+id/imageBackGround" />
 
+    <Button
+        android:id="@+id/buttonTestEndGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_button_left_and_right"
+        android:layout_marginTop="@dimen/margin_top_and_bottom"
+        android:layout_marginEnd="@dimen/margin_button_left_and_right"
+        android:text="@string/end_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/goLeft"
         android:layout_width="wrap_content"

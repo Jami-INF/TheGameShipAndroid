@@ -49,6 +49,8 @@ public class GameActivity extends MainActivity implements IObserver {
     private World world;
     private IEntity player;
 
+    private double scorePlayer = 0;
+
     private final EntityManager entityManager = new EntityManager();
     public Set<IEntity> getEntityCollection() {
         return entityManager.getEntityCollection();
@@ -107,6 +109,11 @@ public class GameActivity extends MainActivity implements IObserver {
                     break;
             }
             return false;
+        });
+        Button buttonTestEndGame = findViewById(R.id.buttonTestEndGame);
+        buttonTestEndGame.setOnClickListener(e -> {
+            Intent intent = EndGameActivity.newIntent(this, getIntent().getStringExtra("nickname"), scorePlayer);
+            startActivity(intent);
         });
     }
 
