@@ -1,4 +1,4 @@
-package com.iut.thegameship.data;
+package com.iut.thegameship.util.save;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

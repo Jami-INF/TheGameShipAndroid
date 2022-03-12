@@ -1,6 +1,7 @@
-package com.iut.thegameship.data;
+package com.iut.thegameship.util.data;
 
 import com.iut.thegameship.model.score.Score;
+import com.iut.thegameship.util.save.ILoad;
 
 import java.io.FileInputStream;
 import java.io.Serializable;

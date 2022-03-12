@@ -1,4 +1,4 @@
-package com.iut.thegameship.adapter;
+package com.iut.thegameship.util.adapter;
 
 import android.view.View;
 import android.widget.TextView;

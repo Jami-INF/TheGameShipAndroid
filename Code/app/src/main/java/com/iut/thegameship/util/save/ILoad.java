@@ -1,4 +1,4 @@
-package com.iut.thegameship.data;
+package com.iut.thegameship.util.save;
 
 import java.io.FileInputStream;
 

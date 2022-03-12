@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iut.thegameship.R;
-import com.iut.thegameship.adapter.ArrayToView;
-import com.iut.thegameship.data.FileLoader;
-import com.iut.thegameship.data.FileSaver;
-import com.iut.thegameship.data.ILoad;
-import com.iut.thegameship.data.ISave;
-import com.iut.thegameship.data.Stub;
+import com.iut.thegameship.util.adapter.ArrayToView;
+import com.iut.thegameship.util.save.FileLoader;
+import com.iut.thegameship.util.save.FileSaver;
+import com.iut.thegameship.util.save.ILoad;
+import com.iut.thegameship.util.save.ISave;
+import com.iut.thegameship.util.data.Stub;
 import com.iut.thegameship.model.score.Score;
 
 import java.io.FileNotFoundException;

@@ -1,8 +1,6 @@
 package com.iut.thegameship.UI.Activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,15 +10,12 @@ import android.widget.SeekBar;
 import androidx.annotation.Nullable;
 
 import com.iut.thegameship.R;
-import com.iut.thegameship.data.FileLoader;
-import com.iut.thegameship.data.FileSaver;
-import com.iut.thegameship.data.ILoad;
-import com.iut.thegameship.data.ISave;
-import com.iut.thegameship.data.Stub;
-import com.iut.thegameship.model.score.Score;
+import com.iut.thegameship.util.save.FileLoader;
+import com.iut.thegameship.util.save.FileSaver;
+import com.iut.thegameship.util.save.ILoad;
+import com.iut.thegameship.util.save.ISave;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class SettingsActivity extends MainActivity {
 

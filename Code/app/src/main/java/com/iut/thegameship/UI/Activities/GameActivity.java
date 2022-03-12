@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,11 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
-import com.iut.thegameship.data.FileLoader;
-import com.iut.thegameship.data.FileSaver;
-import com.iut.thegameship.data.ILoad;
-import com.iut.thegameship.data.ISave;
-import com.iut.thegameship.data.Stub;
+import com.iut.thegameship.util.save.FileLoader;
+import com.iut.thegameship.util.save.FileSaver;
+import com.iut.thegameship.util.save.ILoad;
+import com.iut.thegameship.util.save.ISave;
+import com.iut.thegameship.util.data.Stub;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Sprite;
@@ -96,7 +94,7 @@ public class GameActivity extends MainActivity implements IObserver {
         Button buttonLeft = findViewById(R.id.goLeft);
         buttonLeft.setOnTouchListener((e, motionEvent) -> {
             System.out.println(motionEvent.getAction());
-            spaceShip.setX(spaceShip.getX());   // A refaire pck c'est à chier
+            spaceShip.setX(spaceShip.getX() - 10);   // A refaire pck c'est à chier
             return false;
         });
 
