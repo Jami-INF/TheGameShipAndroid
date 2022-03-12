@@ -4,16 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.iut.thegameship.R;
 
 public class EndGameActivity extends AppCompatActivity {
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.end_game);
         Log.d("Create","onCreateEndGameActivity()");
@@ -31,9 +30,6 @@ public class EndGameActivity extends AppCompatActivity {
         });
 
         super.onCreate(savedInstanceState);
-
-
-
     }
     @Override
     protected void onStop() {
@@ -41,11 +37,10 @@ public class EndGameActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public static Intent newIntent(Context context, String nickname, double scorePlayer){
+    public static Intent newIntent(Context context, String nickname, double scorePlayer) {
         Intent intent = new Intent(context, EndGameActivity.class);
         intent.putExtra("nickname",nickname);
         intent.putExtra("scorePlayer", scorePlayer);
         return intent;
-
     }
 }

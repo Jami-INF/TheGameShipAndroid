@@ -15,20 +15,20 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
-import com.iut.thegameship.util.save.FileLoader;
-import com.iut.thegameship.util.save.FileSaver;
-import com.iut.thegameship.util.save.ILoad;
-import com.iut.thegameship.util.save.ISave;
-import com.iut.thegameship.util.data.Stub;
+import com.iut.thegameship.model.collider.Collider;
+import com.iut.thegameship.model.collider.ICollider;
+import com.iut.thegameship.model.entity.EntityManager;
+import com.iut.thegameship.model.entity.componement.Speed;
+import com.iut.thegameship.model.entity.componement.Sprite;
+import com.iut.thegameship.model.move.IMove;
+import com.iut.thegameship.model.move.Move;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
-import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
-import com.iut.thegameship.model.score.Score;
+import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.*;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.Set;
 
 public class GameActivity extends MainActivity implements IObserver {
 
@@ -49,11 +49,13 @@ public class GameActivity extends MainActivity implements IObserver {
     private World world;
     private IEntity player;
 
-    public static final String PATHToScores = "scores";
-    private ISave save = new FileSaver();
-    private ILoad loader;
-    private Stub modele = new Stub();
-    private ArrayList<Score> scores = null;     //a voir si ça reste ici
+    private final EntityManager entityManager = new EntityManager();
+    public Set<IEntity> getEntityCollection() {
+        return entityManager.getEntityCollection();
+    }
+
+    private IMove move = new Move();
+    private final ICollider collider = new Collider(getEntityCollection());
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -66,16 +68,6 @@ public class GameActivity extends MainActivity implements IObserver {
         layout = findViewById(R.id.gameView);
         spaceShip = findViewById(R.id.spaceShip);
         music = MediaPlayer.create(this, R.raw.shoot);
-
-        loader = new FileLoader();
-        try {
-            scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
-        if (scores == null) {
-            scores = (ArrayList<Score>) modele.load(null);
-        }
 
         this.world = new World(layoutWidth, layoutHeight);
         world.init();
@@ -91,16 +83,29 @@ public class GameActivity extends MainActivity implements IObserver {
         });
         spaceShip.setRotation(-90);
 
-        Button buttonLeft = findViewById(R.id.goLeft);
+        Button buttonLeft = findViewById(R.id.goLeft);              // Horrible!
         buttonLeft.setOnTouchListener((e, motionEvent) -> {
-            System.out.println(motionEvent.getAction());
-            spaceShip.setX(spaceShip.getX() - 10);   // A refaire pck c'est à chier
+            switch (motionEvent.getAction()) {
+                case 0 :
+                case 1 :
+                    break;
+                case 2 :
+                    move.move(player, collider, ECommand.LEFT, Location.cast(player), Speed.cast(player), layoutHeight, layoutWidth);
+                    break;
+            }
             return false;
         });
 
-        Button buttonRight = findViewById(R.id.goRight);
+        Button buttonRight = findViewById(R.id.goRight);            // Horrible!
         buttonRight.setOnTouchListener((e, motionEvent) -> {
-            spaceShip.setX(spaceShip.getX() + 10);   // A refaire pck c'est à chier
+            switch (motionEvent.getAction()) {
+                case 0 :
+                case 1 :
+                    break;
+                case 2 :
+                    move.move(player, collider, ECommand.RIGHT, Location.cast(player), Speed.cast(player), layoutHeight, layoutWidth);
+                    break;
+            }
             return false;
         });
     }
@@ -112,10 +117,8 @@ public class GameActivity extends MainActivity implements IObserver {
         if (nickname.equals("")) {
             nickname = "guest";
         }
-        scores.add(new Score(nickname, (float) 0));     //Score test
 
         player = world.getPlayer();
-
         int resID = getResources().getIdentifier(Sprite.cast(player).getSprite() , "drawable" , getPackageName());
         spaceShip.setImageDrawable(getResources().getDrawable(resID));
 
@@ -150,16 +153,6 @@ public class GameActivity extends MainActivity implements IObserver {
     protected void onStop() {
         super.onStop();
         loop.StopLoop();
-        try {
-            save.save(openFileOutput(PATHToScores, MODE_PRIVATE), scores);
-            System.out.println("save ok");
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                scores.forEach((n) -> System.out.println(n.getPseudo()));
-            }*/
-
-        } catch (FileNotFoundException e) {
-
-        }
     }
 
     @Override
@@ -184,13 +177,13 @@ public class GameActivity extends MainActivity implements IObserver {
             if (timer.getTimer() > 1000) {
                 timer.resetTimer();
 
-                TextView shoot = new TextView(this);
+                /*TextView shoot = new TextView(this);
                 shoot.setText("|");
                 shoot.setX(spaceShip.getX() + (spaceShipWidth /2) - 4);     // Largeur du projectile
                 shoot.setY(spaceShip.getY() - (spaceShipHeight /4));
 
                 layout.addView(shoot);
-                music.start();
+                music.start();*/
             }
             layout.invalidate();
         });

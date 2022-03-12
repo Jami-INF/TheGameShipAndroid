@@ -27,6 +27,8 @@ public class Move implements IMove {
                 break;
         }
 
+        System.out.println(nextx);
+
         //Vérifie la collision
         UUID id = e.getId();
         if (e.isTypeOf(EComponementType.Shoot)) {
