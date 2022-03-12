@@ -28,6 +28,9 @@
         <activity
             android:name=".UI.Activities.SettingsActivity" >
         </activity>
+        <activity
+            android:name=".UI.Activities.EndGameActivity" >
+        </activity>
 
     </application>
 </manifest>
