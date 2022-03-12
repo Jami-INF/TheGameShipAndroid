@@ -53,7 +53,7 @@ public class GameActivity extends MainActivity implements IObserver {
     private ISave save = new FileSaver();
     private ILoad loader;
     private Stub modele = new Stub();
-    private ArrayList<Score> scores = null;//a voir si ça reste ici
+    private ArrayList<Score> scores = null;     //a voir si ça reste ici
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -107,13 +107,12 @@ public class GameActivity extends MainActivity implements IObserver {
 
     @Override
     protected void onStart() {
-
         super.onStart();
         String nickname = getIntent().getStringExtra("nickname");
-        if(nickname.equals("")){
+        if (nickname.equals("")) {
             nickname = "guest";
         }
-        scores.add(new Score(nickname, (float) 0));//Score test
+        scores.add(new Score(nickname, (float) 0));     //Score test
 
         player = world.getPlayer();
 
@@ -125,7 +124,6 @@ public class GameActivity extends MainActivity implements IObserver {
         spaceShip.setY((float) l.getY());
 
         // Trouver une solution pour faire ça bien plus proprement !
-
         spaceShip.post(() -> {
             spaceShipHeight = spaceShip.getMeasuredHeight();   // Peut être à modifier pour s'adapter à la taille défini par le constructeur?
             spaceShipWidth = spaceShip.getMeasuredWidth();
@@ -197,10 +195,10 @@ public class GameActivity extends MainActivity implements IObserver {
             layout.invalidate();
         });
     }
+
     public static Intent newIntent(Context context, String nickname){
         Intent intent = new Intent(context, GameActivity.class);
         intent.putExtra("nickname",nickname);
         return intent;
     }
-
 }

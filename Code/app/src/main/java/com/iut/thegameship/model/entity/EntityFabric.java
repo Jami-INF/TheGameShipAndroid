@@ -20,6 +20,7 @@ public class EntityFabric {
         numberEnemy++;
         return numberEnemy;
     }
+    
     //FAbrique = mauvaise méthode pour créer les entitées.
     public Entity createPlayer(String name, String sprite, double height, double width, double hp, double x, double y, float speedX, float speedY) {
         Entity e = new Entity(name, EEntityType.Player);

@@ -6,7 +6,6 @@ public class TouchScreen implements IInput{
     @Override
     public ArrayList<ECommand> getKeyPressed() {
         ArrayList<ECommand> list = new ArrayList<>();
-        list.add(ECommand.UP);
         return list;
     }
 }

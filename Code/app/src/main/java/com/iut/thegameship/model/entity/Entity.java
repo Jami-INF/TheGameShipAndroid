@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-
 public class Entity extends Componement implements IEntity {
 
     private UUID id;
