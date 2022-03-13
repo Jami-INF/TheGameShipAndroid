@@ -26,6 +26,7 @@ import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
+import com.iut.thegameship.util.input.TouchScreen;
 import com.iut.thegameship.util.loop.*;
 
 import java.util.Set;
@@ -71,7 +72,7 @@ public class GameActivity extends MainActivity implements IObserver {
         spaceShip = findViewById(R.id.spaceShip);
         music = MediaPlayer.create(this, R.raw.shoot);
 
-        this.world = new World(layoutWidth, layoutHeight);
+        this.world = new World(layoutWidth, layoutHeight, new TouchScreen(layout));
         world.init();
         loop = world.loop;
 

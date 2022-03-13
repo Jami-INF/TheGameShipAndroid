@@ -11,13 +11,14 @@ import java.util.UUID;
 public class Collider implements ICollider { // Document : http://sdz.tdct.org/sdz/eorie-des-collisions.html
 
     private final Set<IEntity> entities;
+    //Mettre la taille de la fenêtre dans le constructeur
 
     public Collider(Set<IEntity> entities) {
         this.entities = entities;
     }
     //La collision ne doit pas porter ses propres informations
     @Override
-    public ColliderInfo isCollision(double nextX, double nextY, double height, double width, UUID id,double heightWindow, double widthWindow) {
+    public ColliderInfo isCollision(double nextX, double nextY, double height, double width, UUID id, double heightWindow, double widthWindow) {
         boolean scene = isCollisionScene(nextX, nextY, height, width, heightWindow, widthWindow);
         IEntity e = isCollisionEntity(nextX, nextY, height, width, id);
         return new ColliderInfo(scene, e);
@@ -47,3 +48,5 @@ public class Collider implements ICollider { // Document : http://sdz.tdct.org/s
         return null; //Pas de Collision
     }
 }
+
+

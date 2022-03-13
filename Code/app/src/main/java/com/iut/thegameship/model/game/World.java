@@ -1,6 +1,7 @@
 package com.iut.thegameship.model.game;
 
 import com.iut.thegameship.model.entity.IEntity;
+import com.iut.thegameship.util.input.IInput;
 import com.iut.thegameship.util.loop.Loop;
 
 import java.util.Set;
@@ -8,7 +9,9 @@ import java.util.Set;
 public class World implements IEntityCollection, ILifeCycle {
 
     public final Loop loop;
-    private final Thread thread;
+    private Thread thread;
+
+    private final IInput input;
 
     Level currentLevel;
 
@@ -28,12 +31,14 @@ public class World implements IEntityCollection, ILifeCycle {
         return currentLevel.getPlayer();
     }
 
-    public World(double widthWindow, double heightWindow) {
-
-        loop = new Loop(20);    //Temps d'attente entre chaque actualisation de sprite du joueur et déplacement joueur
+    public World(double widthWindow, double heightWindow, IInput input) {
+        //Loop
+        loop = new Loop(20); //Temps d'attente entre chaque actualisation de sprite du joueur et déplacement joueur
         thread = new Thread(loop);
 
-        currentLevel = new Level(loop, widthWindow, heightWindow);
+        this.input = input;
+
+        currentLevel = new Level(loop, input, widthWindow, heightWindow); //Mettre le bon monde
     }
 
     //Init, instancie les entité ou tout autre chose
@@ -49,9 +54,24 @@ public class World implements IEntityCollection, ILifeCycle {
     }
 
     @Override
+    public void pause() {
+        currentLevel.pause();
+        loop.StopLoop();
+        thread.interrupt();
+    }
+
+    @Override
+    public void resume(){
+        thread = new Thread(loop);
+        thread.start();
+        loop.RestartLoop();
+    }
+
+    @Override
     public void exit() {
         currentLevel.exit();
         loop.StopLoop();
-        thread.stop();  //TODO: Voir si il n'y a pas un autre moyen car deprecated
+        thread.interrupt();
     }
 }
+

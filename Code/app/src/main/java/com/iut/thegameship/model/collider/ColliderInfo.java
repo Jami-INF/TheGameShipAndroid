@@ -21,7 +21,8 @@ public class ColliderInfo {
 
     @Override
     public String toString() {
-        String entityName = (e != null) ? "null" : e.getName();
+        String entityName = (e == null) ? "null" : e.getName();
         return "isCollison : " + isCollision + "\nAvec l'entité : " + entityName + "\n";
     }
 }
+

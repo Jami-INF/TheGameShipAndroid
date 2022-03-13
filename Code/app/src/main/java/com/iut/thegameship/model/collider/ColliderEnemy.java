@@ -18,9 +18,9 @@ public class ColliderEnemy extends Collider {
     }
 
     protected boolean isCollisionScene(double nextX, double nextY, double height, double width, double heightWindow, double widthWindow) {
-        double maxX = widthWindow + width*2;    //Ajoute du vide à droite pour pouvoir faire spawn les entités en dehors de la window
-        double minX = -(width*2);               //Ajoute du vide à gauche
+        double maxX = widthWindow + width*2; //Ajoute du vide à droite pour pouvoir faire spawn les entités en dehors de la window
+        double minX = -(width*2); //Ajoute du vide à gauche
         return ((nextY <= 0) || (nextX <= minX) || (nextY + height >= heightWindow) || (nextX + width >= maxX)); //trop haut || trop à gauche || trop bas || trop à droite
     }
-
 }
+
