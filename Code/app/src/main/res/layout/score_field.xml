@@ -8,9 +8,7 @@
         android:id="@+id/scoreText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/sub_title"
-        android:textStyle="bold|italic"
+        android:text="DNF"
+        android:textSize="@dimen/clasic_text"
         tools:ignore="MissingConstraints" />
 </LinearLayout>

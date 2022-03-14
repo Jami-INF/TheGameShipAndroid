@@ -18,7 +18,7 @@ public class TouchScreen implements IInput {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void setLocation(){
+    public void setLocation() {
         layout.setOnTouchListener((view, motionEvent) -> {
             final int action = motionEvent.getAction();
 

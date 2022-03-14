@@ -50,10 +50,9 @@ public class ScoresActivity extends AppCompatActivity {
             scores = (ArrayList<Score>) modele.load(null);
         }
         scoresRecyclerView = findViewById(R.id.scoresRecyclerView);
-
         //scores = modele.loadscoresTmp();
-        System.out.println("scores :");
-        System.out.println(scores);
+        //System.out.println("scores :");
+        //System.out.println(scores);
         scoresRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         scoresRecyclerView.setAdapter(new ArrayToView(scores));
     }
