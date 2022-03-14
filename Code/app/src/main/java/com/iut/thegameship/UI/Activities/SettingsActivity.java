@@ -54,17 +54,14 @@ public class SettingsActivity extends MainActivity {
                 System.out.println("Seeekbar position is : " +i);
                 positionSeekBarDificulty = i;
                 System.out.println(i);
-
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
         final Button resetButton = findViewById(R.id.resetButton);
@@ -73,21 +70,16 @@ public class SettingsActivity extends MainActivity {
                 seekBar.setProgress(1);
             }
         });
-
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         try {
             save.save(openFileOutput(PATHToSeekBarDificulty, MODE_PRIVATE), positionSeekBarDificulty);
             System.out.println("save ok");
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                scores.forEach((n) -> System.out.println(n.getPseudo()));
-            }*/
-
         } catch (FileNotFoundException e) {
-
+            System.out.println(e);
         }
     }
-
 }

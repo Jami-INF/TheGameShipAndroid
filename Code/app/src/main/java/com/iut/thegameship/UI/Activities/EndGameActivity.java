@@ -21,7 +21,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class EndGameActivity extends AppCompatActivity {
 
     public static final String PATHToScores = "scores";

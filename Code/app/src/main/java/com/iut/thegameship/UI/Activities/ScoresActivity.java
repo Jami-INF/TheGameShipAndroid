@@ -23,16 +23,13 @@ import com.iut.thegameship.model.score.Score;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-
 public class ScoresActivity extends AppCompatActivity {
 
     public static final String PATHToScores = "scores";
     private ISave save = new FileSaver();
     private ILoad loader;
     private RecyclerView scoresRecyclerView;
-    private ScoresActivity mainActivity;
     private Stub modele = new Stub();
-
     private ArrayList<Score> scores = null;
 
     @SuppressLint("WrongViewCast")
@@ -43,15 +40,12 @@ public class ScoresActivity extends AppCompatActivity {
         setContentView(R.layout.scores);
         Log.d("Create","onCreateScores()");
 
-        //final TextView textNickNameTest = findViewById(R.id.nicknamebindtest);
-        //textNickNameTest.setText(getIntent().getStringExtra("nickname"));//Mettre en couleur les scores correspondant a se pseudo
-
         loader = new FileLoader();
         try {
             scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
         } catch (FileNotFoundException e) {
+            System.out.println(e);
         }
-
         if (scores == null) {
             scores = (ArrayList<Score>) modele.load(null);
         }
@@ -62,16 +56,15 @@ public class ScoresActivity extends AppCompatActivity {
         System.out.println(scores);
         scoresRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         scoresRecyclerView.setAdapter(new ArrayToView(scores));
-
     }
+
     @Override
     protected void onStop() {
         try {
             save.save(openFileOutput(PATHToScores, MODE_PRIVATE), scores);
         } catch (FileNotFoundException e) {
-            Log.e(getPackageName(), "save failed");
+            Log.e(getPackageName(), "Save failed");
         }
-
         super.onStop();
         Log.d("Stop","onStop()");
     }

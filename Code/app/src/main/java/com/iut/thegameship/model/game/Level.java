@@ -72,7 +72,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
 
         //ENTITIES
         player = entityFabric.createPlayer("Vaisseau", "spaceship", 90, 90, 6 , 400, 500, 10, 10);
-        //player = entityFabric.createPlayer("Vaisseau", "/Sprites/spaceship.png", 70, 70, 6 - Launcher.getPersistenceManager().getSettings().getDifficulty(), 0, 250, 10, 10));
         entityManager.addEntity(player);
         //createNewWave(1,2,0);
     }

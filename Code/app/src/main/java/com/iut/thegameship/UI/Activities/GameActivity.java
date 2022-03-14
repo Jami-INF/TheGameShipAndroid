@@ -91,7 +91,6 @@ public class GameActivity extends MainActivity implements IObserver {
 
     @Override
     public void update() {
-
     }
 
     public static Intent newIntent(Context context, String nickname){
