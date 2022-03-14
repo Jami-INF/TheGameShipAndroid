@@ -143,7 +143,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     public void update() {
         try {
             updatePlayer();
-
             List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
 
             for (IEntity e : new ArrayList<>(getEntityCollection())) {
@@ -168,7 +167,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             for (IEntity e : listToBurn) {
                 entityManager.removeEntity(e);
             }
-
             //createNewWave(1, 2, 10000);
         } catch (Exception err) {
             err.printStackTrace();

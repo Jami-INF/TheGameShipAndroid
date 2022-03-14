@@ -26,14 +26,12 @@ public class World implements IEntityCollection, ILifeCycle {
     public Set<IEntity> getEntityCollection() {
         return currentLevel.getEntityCollection();
     }
-
     public IEntity getPlayer() {
         return currentLevel.getPlayer();
     }
 
     public World(double widthWindow, double heightWindow, IInput input) {
-        //Loop
-        loop = new Loop(20); //Temps d'attente entre chaque actualisation de sprite du joueur et déplacement joueur
+        loop = new Loop(20);        //Temps d'attente entre chaque actualisation de sprite du joueur et déplacement joueur
         thread = new Thread(loop);
 
         this.input = input;
