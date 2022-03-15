@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
@@ -14,7 +15,7 @@ import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.TouchScreen;
 import com.iut.thegameship.util.loop.*;
 
-public class GameActivity extends MainActivity implements IObserver {
+public class GameActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
     private int layoutWidth;
@@ -41,20 +42,21 @@ public class GameActivity extends MainActivity implements IObserver {
             layoutWidth = layout.getMeasuredWidth();
         });
 
-        this.world = new World(layoutWidth, layoutHeight, new TouchScreen(layout));
-        world.init();
-        loop = world.loop;
+        //this.world = new World(layoutWidth, layoutHeight, new TouchScreen(layout));
+        //world.init();
 
-        timer = new Timer(loop);
-        loop.subscribe(this);
-        loop.subscribe(timer);
+        //loop = world.loop;
+
+        //timer = new Timer(loop);
+        //loop.subscribe(this);
+        //loop.subscribe(timer);
 
         // Temporaire (debug)
-        Button buttonTestEndGame = findViewById(R.id.buttonTestEndGame);
+        /*Button buttonTestEndGame = findViewById(R.id.buttonTestEndGame);
         buttonTestEndGame.setOnClickListener(e -> {
             Intent intent = EndGameActivity.newIntent(this, getIntent().getStringExtra("nickname"), scorePlayer);
             startActivity(intent);
-        });
+        });*/
 
     }
 
@@ -65,32 +67,28 @@ public class GameActivity extends MainActivity implements IObserver {
         if (nickname.equals("")) {
             nickname = "guest";
         }
-        world.start();
+        //world.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        loop.StopLoop();
-        thread.interrupt();
+        //loop.StopLoop();
+        //thread.interrupt();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        thread = new Thread(loop);
-        thread.start();
-        loop.RestartLoop();
+        //thread = new Thread(loop);
+        //thread.start();
+        //loop.RestartLoop();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        loop.StopLoop();
-    }
-
-    @Override
-    public void update() {
+        //loop.StopLoop();
     }
 
     public static Intent newIntent(Context context, String nickname){
