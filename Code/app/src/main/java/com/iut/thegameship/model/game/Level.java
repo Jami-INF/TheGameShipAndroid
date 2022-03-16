@@ -71,9 +71,9 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         timer3 = new Timer(loop);
 
         //ENTITIES
-        player = entityFabric.createPlayer("Vaisseau", "spaceship", 90, 90, 6 , 400, 500, 10, 10);
+        player = entityFabric.createPlayer("Vaisseau", "spaceship", 90, 90, 6 , 600, 1600, 10, 10);
         entityManager.addEntity(player);
-        //createNewWave(1,2,0);
+        createNewWave(1,2,0);
     }
 
     private void updateShoot(IEntity e) {
