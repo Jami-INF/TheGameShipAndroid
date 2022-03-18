@@ -35,7 +35,6 @@ public class World implements IEntityCollection, ILifeCycle {
         thread = new Thread(loop);
 
         this.input = input;
-
         currentLevel = new Level(loop, input, widthWindow, heightWindow); //Mettre le bon monde
     }
 

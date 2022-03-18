@@ -67,17 +67,27 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void init() {
         timer1 = new Timer(loop);
-        timer2 = new Timer(loop);
-        timer3 = new Timer(loop);
+        //timer2 = new Timer(loop);
+        //timer3 = new Timer(loop);
 
         //ENTITIES
-        player = entityFabric.createPlayer("Vaisseau", "spaceship", 90, 90, 6 , 600, 1600, 10, 10);
+        player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
-        createNewWave(1,2,0);
+
+        //createNewWave(1,2,0);
+    }
+
+    public void updatePlayer(ECommand key) {
+        IEntity e = getPlayer();
+        move.move(e, collider, key, Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
+    }
+
+    private void createShoot(UUID id, Location l, ECommand key) {
+        entityManager.addEntity(entityFabric.createShoot(id, l, key));
     }
 
     private void updateShoot(IEntity e) {
-        UUID ownerId = Shoot.cast(e).getOwnerId();
+        /*UUID ownerId = Shoot.cast(e).getOwnerId();
         for (IEntity e2 : getEntityCollection()) {
             if (e2.getId().equals(ownerId)) {
                 ColliderInfo ci = move.move(e, collider, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
@@ -88,42 +98,27 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                     }
                 }
             }
-        }
-    }
-
-    private void updatePlayer() {
-        IEntity e = getPlayer();
-        for (ECommand key : input.getKeyPressed()) {
-            if(key!=null)
-                move.move(e, collider, key, Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
-        }
+        }*/
     }
 
     private void updateEnemy(IEntity e, long timer) {
-        IEntity player = getPlayer();
+        /*IEntity player = getPlayer();
         Location l = Location.cast(e);
         if(getPlayer() != null){
             l = Location.cast(player);
         }
         ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, l, Speed.cast(e), heightWindow, widthWindow);
         if (timer2.getTimer() >= timer) {
-            createShoot(e.getId(), Location.cast(e), ECommand.LEFT, timer);
+            //createShoot(e.getId(), Location.cast(e), ECommand.LEFT, timer);
             timer2.resetTimer();
         }
         if(ci.IsCollision() && ci.getEntity() == null){
             entityManager.removeEntity(e);
-        }
-    }
-
-    private void createShoot(UUID id, Location l, ECommand key, long timer) {
-        if (timer1.getTimer() >= timer) {
-            entityManager.addEntity(entityFabric.createShoot(id, l, key));
-            timer1.resetTimer();
-        }
+        }*/
     }
 
     private void createNewWave(int min, int max, long timer) {
-        double height = 70;
+        /*double height = 70;
         double width = height;
         if (timer3.getTimer() >= timer) {
             double nbEnemy = Math.random() * (max - min + 1) + min;     //Math.random() * (max - min + 1) + min
@@ -135,13 +130,12 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                 entityManager.addEntity(entityFabric.createEnemy(x, y, height, width));
             }
             timer3.resetTimer();
-        }
+        }*/
     }
 
     @Override
     public void update() {
-        try {
-            updatePlayer();
+        /*try {
             List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
 
             for (IEntity e : new ArrayList<>(getEntityCollection())) {
@@ -169,7 +163,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             //createNewWave(1, 2, 10000);
         } catch (Exception err) {
             err.printStackTrace();
-        }
+        }*/
     }
 
     @Override
