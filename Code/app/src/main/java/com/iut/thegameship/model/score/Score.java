@@ -5,17 +5,17 @@ import java.util.Comparator;
 
 public class Score implements Serializable {
     private String pseudo;
-    private double timeSec;
+    private double scoregame;
     private int dificulty;
 
     public Score(String pseudo, double timeSec, int dificulty){
         this.pseudo=pseudo;
-        this.timeSec=timeSec;
+        this.scoregame=timeSec;
         this.dificulty=dificulty;
     }
 
     public double getTimeSec() {
-        return timeSec;
+        return scoregame;
     }
 
     public String getPseudo() {
@@ -31,18 +31,18 @@ public class Score implements Serializable {
     }
 
     public void setTimeSec(double timeSec) {
-        this.timeSec = timeSec;
+        this.scoregame = timeSec;
     }
 
     public void setDificulty(int dificulty){
         this.dificulty = dificulty;
     }
 
-    public static Comparator<Score> ComparatorDificulty = new Comparator<Score>() {
+    public static Comparator<Score> ComparatorScoreGame = new Comparator<Score>() {
 
         @Override
         public int compare(Score score, Score t1) {
-            return score.getDificulty() - t1.getDificulty();
+            return (int) (t1.getTimeSec() - score.getTimeSec());
         }
 
     };

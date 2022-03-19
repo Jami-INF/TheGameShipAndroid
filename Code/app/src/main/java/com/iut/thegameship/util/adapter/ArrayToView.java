@@ -30,7 +30,7 @@ public class ArrayToView extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Score scoreCourant = scores.get(position);
-        ((ViewHolderScore)holder).getTextViewScore().setText(scoreCourant.getPseudo() + "  |  " + scoreCourant.getTimeSec() + "  |  " + scoreCourant.getDificulty());
+        ((ViewHolderScore)holder).getTextViewScore().setText(scoreCourant.getPseudo() + "   |    " + scoreCourant.getTimeSec());
     }
 
     @Override

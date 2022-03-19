@@ -72,7 +72,7 @@ public class EndGameActivity extends AppCompatActivity {
     protected void onStop() {
 
         super.onStop();
-        Collections.sort(scores, Score.ComparatorDificulty);
+        Collections.sort(scores, Score.ComparatorScoreGame);
         try {
             save.save(openFileOutput(PATHToScores, MODE_PRIVATE), scores);
             System.out.println("save ok");

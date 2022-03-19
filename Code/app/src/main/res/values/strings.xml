@@ -10,4 +10,8 @@
     <string name="settings">Settings</string>
     <string name="volume">Volume</string>
     <string name="end_game">end game</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+
 </resources>

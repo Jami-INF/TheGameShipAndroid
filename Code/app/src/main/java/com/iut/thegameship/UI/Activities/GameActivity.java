@@ -68,7 +68,7 @@ public class GameActivity extends AppCompatActivity  {
         if (nickname.equals("")) {
             nickname = "guest";
         }
-        world.start();
+        //world.start();
     }
 
     @Override
