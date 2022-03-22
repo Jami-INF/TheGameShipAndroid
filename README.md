@@ -1,15 +1,16 @@
 # TheGameShip
 
 
-				TheGameShip : 
+					TheGameShip: 
 		The unaccomplished version of a Good Game
-
 
 
 ## Specs:
 - Shoot 'em Up
-- Max Score (un-winnable)
+- Max Score (unwinnable)
 - Enemy waves
+- Custom difficulty
+- Sound design
 - Fixed view
   
 
@@ -23,4 +24,4 @@
 ## Credits:
 
 - Co-author: [Clergue Valentin](https://github.com/HandyS11)
-- Co-author: [Infante Jami]()
+- Co-author: [Infante Jami](https://www.youtube.com/watch?v=dQw4w9WgXcQ)

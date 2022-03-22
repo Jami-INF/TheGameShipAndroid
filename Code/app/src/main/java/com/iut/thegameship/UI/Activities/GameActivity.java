@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.iut.thegameship.R;
 import com.iut.thegameship.UI.Views.GameView;
 import com.iut.thegameship.model.game.World;
-import com.iut.thegameship.util.input.TouchScreen;
 import com.iut.thegameship.util.loop.*;
 
 public class GameActivity extends AppCompatActivity  {
@@ -25,8 +24,6 @@ public class GameActivity extends AppCompatActivity  {
     private int layoutWidth;
     private int layoutHeight;
 
-    private Timer timer;
-    private Thread thread;
     private Loop loop;
     private World world;
 
@@ -50,14 +47,11 @@ public class GameActivity extends AppCompatActivity  {
         });
         linearLayout = findViewById(R.id.linearLayout);
 
-        this.world = new World(layoutWidth, layoutHeight, new TouchScreen(layout));
+        this.world = new World(layoutWidth, layoutHeight);
         world.init();
         gameview = new GameView(this, world, layoutWidth, layoutHeight);
 
         loop = world.loop;
-
-        timer = new Timer(loop);
-        loop.subscribe(timer);
         linearLayout.addView(gameview);
     }
 
@@ -68,7 +62,7 @@ public class GameActivity extends AppCompatActivity  {
         if (nickname.equals("")) {
             nickname = "guest";
         }
-        //world.start();
+        world.start();
     }
 
     @Override
