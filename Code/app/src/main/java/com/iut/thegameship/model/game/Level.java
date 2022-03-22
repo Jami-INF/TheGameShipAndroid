@@ -4,11 +4,9 @@ import com.iut.thegameship.model.collider.Collider;
 import com.iut.thegameship.model.collider.ColliderEnemy;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
-import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.EntityFabric;
 import com.iut.thegameship.model.entity.EntityManager;
 import com.iut.thegameship.model.entity.IEntity;
-import com.iut.thegameship.model.entity.componement.EComponementType;
 import com.iut.thegameship.model.entity.componement.Life;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Shoot;
@@ -17,22 +15,16 @@ import com.iut.thegameship.model.move.IMove;
 import com.iut.thegameship.model.move.Move;
 import com.iut.thegameship.model.move.MoveEnemy;
 import com.iut.thegameship.util.input.ECommand;
-import com.iut.thegameship.util.input.IInput;
 import com.iut.thegameship.util.loop.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public class Level implements IEntityCollection, ILifeCycle, IObserver {
 
     private final Loop loop;
-    private Timer timer1;
-    private Timer timer2;
-    private Timer timer3;
-
-    private final IInput input;
+    private Timer timer;
 
     private final EntityManager entityManager = new EntityManager();
     private final EntityFabric entityFabric = new EntityFabric();
@@ -57,24 +49,18 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     private double widthWindow;
     private double heightWindow;
 
-    public Level(Loop loop, IInput input, double widthWindow, double heightWindow) {
+    public Level(Loop loop, double widthWindow, double heightWindow) {
         this.loop = loop;
-        this.input = input;
         this.widthWindow = widthWindow;
         this.heightWindow = heightWindow;
     }
 
     @Override
     public void init() {
-        timer1 = new Timer(loop);
-        //timer2 = new Timer(loop);
-        //timer3 = new Timer(loop);
+        timer = new Timer(loop);
 
-        //ENTITIES
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
-
-        //createNewWave(1,2,0);
     }
 
     public void updatePlayer(ECommand key) {
@@ -87,9 +73,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     }
 
     private void updateShoot(IEntity e) {
-        /*UUID ownerId = Shoot.cast(e).getOwnerId();
-        for (IEntity e2 : getEntityCollection()) {
-            if (e2.getId().equals(ownerId)) {
+        /*for (IEntity e2 : getEntityCollection()) {
+            if (e2.getId().equals(e.getId())) {
                 ColliderInfo ci = move.move(e, collider, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
                 if (ci.IsCollision()) {
                     Life.cast(e).setDead(true);
@@ -101,7 +86,60 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         }*/
     }
 
-    private void updateEnemy(IEntity e, long timer) {
+    @Override
+    public void update() {
+        try {
+            if (timer.getTimer() >= 1000) {
+                createShoot(player.getId(), Location.cast(player), ECommand.UP);
+                timer.resetTimer();
+            }
+
+            for (IEntity e : new ArrayList<>(getEntityCollection())) {
+                switch (e.getEntityType()) {
+                    case Shoot:
+                        updateShoot(e);
+                        break;
+                    case Enemy:
+                        updateEnemy(e);
+                        break;
+                }
+            }
+        }
+        catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+        /*try {
+            List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
+
+            for (IEntity e : new ArrayList<>(getEntityCollection())) {
+                switch (e.getEntityType()) {
+                    case Shoot :
+                        updateShoot(e);
+                        break;
+                    case Enemy :
+                        updateEnemy(e, 800);
+                        break;
+                }
+
+                if (e.isTypeOf(EComponementType.Life)) {    //Gestion de la vie
+                    if (Life.cast(e).isDead()) {            //Si l'entité a de la vie
+                        listToBurn.add(e);
+                        if (e.getEntityType().equals(EEntityType.Enemy)) {
+                            //setScore(getScore() + (int) Launcher.getPersistenceManager().getSettings().getDifficulty());
+                        }
+                    }
+                }
+            }
+            for (IEntity e : listToBurn) {
+                entityManager.removeEntity(e);
+            }
+            //createNewWave(1, 2, 10000);
+        } catch (Exception err) {
+            err.printStackTrace();
+        }*/
+
+    private void updateEnemy(IEntity e) {
         /*IEntity player = getPlayer();
         Location l = Location.cast(e);
         if(getPlayer() != null){
@@ -134,53 +172,20 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     }
 
     @Override
-    public void update() {
-        /*try {
-            List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
-
-            for (IEntity e : new ArrayList<>(getEntityCollection())) {
-                switch (e.getEntityType()) {
-                    case Shoot :
-                        updateShoot(e);
-                        break;
-                    case Enemy :
-                        updateEnemy(e, 800);
-                        break;
-                }
-
-                if (e.isTypeOf(EComponementType.Life)) {    //Gestion de la vie
-                    if (Life.cast(e).isDead()) {            //Si l'entité a de la vie
-                        listToBurn.add(e);
-                        if (e.getEntityType().equals(EEntityType.Enemy)) {
-                            //setScore(getScore() + (int) Launcher.getPersistenceManager().getSettings().getDifficulty());
-                        }
-                    }
-                }
-            }
-            for (IEntity e : listToBurn) {
-                entityManager.removeEntity(e);
-            }
-            //createNewWave(1, 2, 10000);
-        } catch (Exception err) {
-            err.printStackTrace();
-        }*/
-    }
-
-    @Override
     public void start() {
-        loop.subscribe(timer1);
-        loop.subscribe(timer2);
-        loop.subscribe(timer3);
+        loop.subscribe(timer);
         loop.subscribe(this);
     }
 
     @Override
     public void pause() {
+        loop.StopLoop();
         return;
     }
 
     @Override
     public void resume() {
+        loop.RestartLoop();
         return;
     }
 
