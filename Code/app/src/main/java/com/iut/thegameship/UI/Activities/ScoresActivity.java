@@ -30,6 +30,8 @@ import java.util.Arrays;
 public class ScoresActivity extends AppCompatActivity {
 
     public static final String PATHToScores = "scores";
+    public static final String PATHToSeekBarDificulty = "SeekBarDificulty";
+
     private ISave save = new FileSaver();
     private ILoad loader;
     private RecyclerView scoresRecyclerView;
@@ -37,6 +39,8 @@ public class ScoresActivity extends AppCompatActivity {
     private Stub modele = new Stub();
     private ArrayList<Score> scores = null;
     ArrayList<Score> scoresOrder = new ArrayList<>();
+
+    private int dificultyCurrent;
 
 
     @SuppressLint("WrongViewCast")
@@ -50,6 +54,7 @@ public class ScoresActivity extends AppCompatActivity {
         loader = new FileLoader();
         try {
             scores = (ArrayList<Score>) loader.load(openFileInput(PATHToScores));
+            dificultyCurrent = (int) loader.load(openFileInput(PATHToSeekBarDificulty));
         } catch (FileNotFoundException e) {
             System.out.println(e);
         }
@@ -59,39 +64,22 @@ public class ScoresActivity extends AppCompatActivity {
 
         scoresRecyclerView = findViewById(R.id.scoresRecyclerView);
         scoresRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //scoresRecyclerView.setAdapter(new ArrayToView(scores));
-        textViewHUD = findViewById(R.id.textViewHUD);
+        scoresRecyclerView.setAdapter(new ArrayToView(updateAffichageDifficulty(dificultyCurrent)));
 
         Button buttonEasy = findViewById(R.id.buttonEasy);
         buttonEasy.setOnClickListener(e -> {
-            textViewHUD.setText("Easy");
             scoresOrder.clear();
-            for (Score score: scores) {
-                if (score.getDificulty() == 1)
-                    scoresOrder.add(score);
-            }
-            scoresRecyclerView.setAdapter(new ArrayToView(scoresOrder));
+            scoresRecyclerView.setAdapter(new ArrayToView(updateAffichageDifficulty(1)));
         });
         Button buttonMedium = findViewById(R.id.buttonMedium);
         buttonMedium.setOnClickListener(e -> {
-            textViewHUD.setText("Medium");
             scoresOrder.clear();
-            for (Score score: scores) {
-                if (score.getDificulty() == 2)
-                    scoresOrder.add(score);
-            }
-            scoresRecyclerView.setAdapter(new ArrayToView(scoresOrder));
+            scoresRecyclerView.setAdapter(new ArrayToView(updateAffichageDifficulty(2)));
         });
         Button buttonHard = findViewById(R.id.buttonHard);
         buttonHard.setOnClickListener(e -> {
-            textViewHUD.setText("Hard");
             scoresOrder.clear();
-            for (Score score: scores) {
-                if (score.getDificulty() == 3)
-                    scoresOrder.add(score);
-            }
-            //scoresOrder = scoresOrder.subList(0, 3);
-            scoresRecyclerView.setAdapter(new ArrayToView(scoresOrder));
+            scoresRecyclerView.setAdapter(new ArrayToView(updateAffichageDifficulty(3)));
         });
     }
 
@@ -110,5 +98,30 @@ public class ScoresActivity extends AppCompatActivity {
         Intent intent = new Intent(context, ScoresActivity.class);
         intent.putExtra("nickname", nickname);
         return intent;
+    }
+    public ArrayList<Score> updateAffichageDifficulty(int difficulty){
+        ArrayList<Score> scoreSelected = new ArrayList<>();
+        textViewHUD = findViewById(R.id.textViewHUD);
+        switch(difficulty){
+            case 1:
+                textViewHUD.setText("Easy");
+                break;
+
+            case 2:
+                textViewHUD.setText("Medium");
+                break;
+
+            case 3:
+                textViewHUD.setText("Hard");
+                break;
+            default:
+                textViewHUD.setText("");
+                break;
+        }
+        for (Score score: scores) {
+            if (score.getDificulty() == difficulty)
+                scoreSelected.add(score);
+        }
+        return scoreSelected;
     }
 }
