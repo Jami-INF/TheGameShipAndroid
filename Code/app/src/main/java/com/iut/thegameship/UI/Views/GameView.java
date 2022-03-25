@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
+import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
@@ -19,7 +20,7 @@ import com.iut.thegameship.util.loop.IObserver;
 import java.util.Set;
 
 public class GameView extends View implements IObserver {
-
+    //ViewGroup
     public World world;
 
     private final double layoutWidth;
@@ -60,7 +61,7 @@ public class GameView extends View implements IObserver {
         else {
             world.getCurrentLevel().updatePlayer(ECommand.RIGHT);
         }
-        update();
+        //update();
         return true;
     }
 
@@ -68,13 +69,13 @@ public class GameView extends View implements IObserver {
         super.onDraw(c);
         entities = world.getEntityCollection();
         player = world.getPlayer();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            entities.forEach((e) -> {
+
+        for(IEntity e : entities){
                 int resID = getResources().getIdentifier(Sprite.cast(e).getSprite(), "drawable", getContext().getPackageName());
                 Location l = Location.cast(e);
                 Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
-                c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(),(int) l.getY(),(int) l.getX()+(int)l.getWidth(),(int) l.getY()+(int)l.getHeight()), null);
-            });
+                c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+                System.out.println(e.getEntityType());
         }
     }
 

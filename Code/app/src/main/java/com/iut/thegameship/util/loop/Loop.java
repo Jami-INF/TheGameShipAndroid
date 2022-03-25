@@ -2,6 +2,8 @@ package com.iut.thegameship.util.loop;
 
 import static java.lang.Thread.sleep;
 
+import com.iut.thegameship.UI.Views.GameView;
+
 public class Loop extends Observable implements Runnable {
 
     private final long millis;
@@ -31,5 +33,9 @@ public class Loop extends Observable implements Runnable {
     }
     public void destroyLoop() {
         unsubscribeAll();
+    }
+
+    public void setView(GameView gameview) {
+        subscribe(gameview);
     }
 }

@@ -52,6 +52,7 @@ public class GameActivity extends AppCompatActivity  {
         gameview = new GameView(this, world, layoutWidth, layoutHeight);
 
         loop = world.loop;
+        loop.setView(gameview);
         linearLayout.addView(gameview);
     }
 
