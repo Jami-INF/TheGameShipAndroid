@@ -14,6 +14,7 @@ import com.iut.thegameship.model.entity.componement.Speed;
 import com.iut.thegameship.model.move.IMove;
 import com.iut.thegameship.model.move.Move;
 import com.iut.thegameship.model.move.MoveEnemy;
+import com.iut.thegameship.model.move.MoveShoot;
 import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.*;
 
@@ -37,6 +38,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     }
 
     private IMove move = new Move();
+    private IMove moveShoot = new MoveShoot();
     private IMove moveEnemy = new MoveEnemy();
 
     private final ICollider collider = new Collider(getEntityCollection());
@@ -89,7 +91,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void update() {
         try {
-            if (timer.getTimer() >= 1000) {
+            if (timer.getTimer() >= 10000) {
                 createShoot(player.getId(), Location.cast(player), ECommand.UP);
                 timer.resetTimer();
             }

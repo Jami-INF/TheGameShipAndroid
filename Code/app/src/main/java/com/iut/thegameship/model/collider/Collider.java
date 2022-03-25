@@ -25,7 +25,7 @@ public class Collider implements ICollider { // Document : http://sdz.tdct.org/s
     }
 
     protected boolean isCollisionScene(double nextX, double nextY, double height, double width, double heightWindow, double widthWindow) {
-        return ((nextY <= 0) || (nextX <= 0) || (nextY + height >= heightWindow) || (nextX + width >= widthWindow)); //trop haut || trop à gauche || trop bas || trop à droite
+        return ((nextY <= 0) || (nextX <= 0) || (nextY + height >= heightWindow) || (nextX + width >= widthWindow));    //trop haut || trop à gauche || trop bas || trop à droite
     }
 
     protected IEntity isCollisionEntity(double nextX, double nextY, double height, double width, UUID id) {
@@ -41,7 +41,7 @@ public class Collider implements ICollider { // Document : http://sdz.tdct.org/s
                 double y2 = l.getY();
                 double height2 = l.getHeight();
                 double width2 = l.getWidth();
-                if (!((x2 >= nextX + width) || (x2 + width2 <= nextX) || (y2 >= nextY + height) || (y2 + height2 <= nextY)))   // trop à droite || trop à gauche || trop en bas || trop en haut
+                if (!((x2 >= nextX + width) || (x2 + width2 <= nextX) || (y2 >= nextY + height) || (y2 + height2 <= nextY)))    // trop à droite || trop à gauche || trop en bas || trop en haut
                     return e2;
             }
         }

@@ -22,8 +22,8 @@ public class GameView extends View implements IObserver {
 
     public World world;
 
-    private double layoutWidth;
-    private double layoutHeight;
+    private final double layoutWidth;
+    private final double layoutHeight;
 
     private IEntity player;
     public Set<IEntity> entities;

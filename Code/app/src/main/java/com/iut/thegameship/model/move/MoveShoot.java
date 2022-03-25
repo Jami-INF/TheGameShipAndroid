@@ -7,18 +7,21 @@ import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Speed;
 import com.iut.thegameship.util.input.ECommand;
 
-public class MoveEnemy implements IMove {
+public class MoveShoot implements IMove {
 
     @Override
     public ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s, double heightWindow, double widthWindow) {
 
         //Location l = Location.cast(e);
-        double nextx = l.getX();
         double nexty = l.getX();
+        double nextx = l.getX();
 
         switch (key) {
-            case DOWN :
+            case UP :
                 nexty += s.getSpeedY();
+                break;
+            case DOWN:
+                nexty -= s.getSpeedY();
                 break;
         }
 
