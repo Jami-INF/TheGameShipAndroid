@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Move implements IMove {
 
     @Override
-    public ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s, double heightWindow, double widthWindow) {
+    public ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s) {
 
         double nextx = l.getX();
         double nexty = l.getY();
@@ -41,7 +41,7 @@ public class Move implements IMove {
         }*/
 
         //Et si ce n'est pas en collision, sa déplace l'entité
-        ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), id, heightWindow, widthWindow);
+        ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), id);
         if (!ci.IsCollision()) {
             l.setX(nextx);
             l.setY(nexty);

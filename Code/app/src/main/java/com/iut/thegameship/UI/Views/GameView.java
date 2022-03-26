@@ -5,14 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.iut.thegameship.model.entity.IEntity;
-import com.iut.thegameship.model.entity.componement.IHasComponements;
 import com.iut.thegameship.model.entity.componement.Location;
-import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
@@ -23,7 +20,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class GameView extends View implements IObserver {
-    //ViewGroup
     public World world;
 
     private final double layoutWidth;
@@ -57,14 +53,12 @@ public class GameView extends View implements IObserver {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float X = event.getX();
-        System.out.println(event);
         if (X < layoutWidth/2) {
             world.getCurrentLevel().updatePlayer(ECommand.LEFT);
         }
         else {
             world.getCurrentLevel().updatePlayer(ECommand.RIGHT);
         }
-        //update();
         return true;
     }
 
@@ -80,7 +74,6 @@ public class GameView extends View implements IObserver {
                 Location l = Location.cast(e);
                 Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
                 c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
-                System.out.println(e.getEntityType());
         }*/
         Iterator it = entities.iterator();
         while (it.hasNext()) {
@@ -89,7 +82,6 @@ public class GameView extends View implements IObserver {
             Location l = Location.cast(e);
             Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
             c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
-            System.out.println(e.getEntityType());
         }
     }
 
