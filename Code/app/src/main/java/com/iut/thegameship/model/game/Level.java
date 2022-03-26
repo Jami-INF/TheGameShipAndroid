@@ -60,7 +60,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void init() {
         timer = new Timer(loop);
-
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
     }
@@ -75,7 +74,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     }
 
     private void updateShoot(IEntity e) {
-        /*for (IEntity e2 : getEntityCollection()) {
+        for (IEntity e2 : getEntityCollection()) {
             if (e2.getId().equals(e.getId())) {
                 ColliderInfo ci = move.move(e, collider, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
                 if (ci.IsCollision()) {
@@ -85,13 +84,13 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                     }
                 }
             }
-        }*/
+        }
     }
 
     @Override
     public void update() {
         try {
-            if (timer.getTimer() >= 10000) {
+            if (timer.getTimer() >= 1000) {
                 createShoot(player.getId(), Location.cast(player), ECommand.UP);
                 timer.resetTimer();
             }

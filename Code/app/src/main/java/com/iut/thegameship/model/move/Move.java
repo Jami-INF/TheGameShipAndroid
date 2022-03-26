@@ -26,6 +26,12 @@ public class Move implements IMove {
             case RIGHT:
                 nextx += s.getSpeedX();
                 break;
+            case UP:
+                nexty -= s.getSpeedY();
+                break;
+            case DOWN:
+                nexty += s.getSpeedY();
+                break;
         }
 
         //Vérifie la collision
