@@ -1,6 +1,7 @@
 package com.iut.thegameship.UI.Views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.iut.thegameship.R;
+import com.iut.thegameship.UI.Activities.EndGameActivity;
 import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
@@ -104,6 +106,11 @@ public class GameView extends View implements IObserver {
                     else { c.drawBitmap(this.bitmapShoot2, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null); }
                     break;
                 case Player:
+                    //lancer l'activité EndGame si le joueur est mort
+                    if (world.getLife() <= 0) {
+                        Intent intent = EndGameActivity.newIntent(getContext(), "nickname", world.getScore());
+                        getContext().startActivity(intent);
+                    }
                     c.drawBitmap(this.bitmapShip, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
                     break;
                 case Enemy:

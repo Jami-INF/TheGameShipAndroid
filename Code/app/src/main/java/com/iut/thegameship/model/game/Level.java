@@ -143,11 +143,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                     case Enemy:
                         updateEnemy(e);
                         break;
-                    case Player:
-                        if (Life.cast(e).getHp() <= 0) {
-
-                        }
-
                 }
             }
         } catch (Exception err) {
