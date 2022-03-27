@@ -26,11 +26,11 @@ public class GameActivity extends AppCompatActivity {
     private int layoutWidth;
     private int layoutHeight;
 
-    private TextView textViewScore;
-    private TextView textViewLife;
-
     private Loop loop;
     private World world;
+
+    TextView textViewScore;
+    TextView textViewLife;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -59,9 +59,8 @@ public class GameActivity extends AppCompatActivity {
         loop = world.loop;
         loop.subscribe(gameview);
         linearLayout.addView(gameview);
-        //bind score and life
-        setTextViewScore(world.getScore());
-        setTextViewLife(world.getLife());
+        //setTextViewScore(world.getScore());
+        //setTextViewLife(world.getLife());
     }
 
     @Override

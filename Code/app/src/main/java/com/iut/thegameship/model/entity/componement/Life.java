@@ -7,7 +7,7 @@ public class Life extends Componement {
     public double getHp() {
         return hp;
     }
-    private void setHp(double hp) {
+    public void setHp(double hp) {
         this.hp = hp;
         if (getHp() <= 0) {
             setDead(true);

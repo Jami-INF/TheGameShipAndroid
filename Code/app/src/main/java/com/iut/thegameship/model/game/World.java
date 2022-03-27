@@ -16,8 +16,14 @@ public class World implements IEntityCollection, ILifeCycle {
     public int getScore() {
         return currentLevel.getScore();
     }
+    public void setScore(int score) {
+        currentLevel.setScore(score);
+    }
     public int getLife() {
         return (int) Life.cast(currentLevel.getPlayer()).getHp();
+    }
+    public void setLife(int life) {
+        Life.cast(currentLevel.getPlayer()).setHp(life);
     }
     public Level getCurrentLevel() {
         return currentLevel;
@@ -30,7 +36,6 @@ public class World implements IEntityCollection, ILifeCycle {
     public IEntity getPlayer() {
         return currentLevel.getPlayer();
     }
-
     public World(double widthWindow, double heightWindow) {
         loop = new Loop(50);
         thread = new Thread(loop);

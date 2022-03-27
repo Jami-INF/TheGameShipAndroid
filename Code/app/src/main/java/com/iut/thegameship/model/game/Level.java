@@ -1,5 +1,6 @@
 package com.iut.thegameship.model.game;
 
+import com.iut.thegameship.UI.Activities.GameActivity;
 import com.iut.thegameship.model.collider.Collider;
 import com.iut.thegameship.model.collider.ColliderEnemy;
 import com.iut.thegameship.model.collider.ColliderInfo;
@@ -99,8 +100,22 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                     if (ci.getEntity() != null) {
                         Life.cast(ci.getEntity()).decreaseHp();
                     }
+                    checkCollisionBindAffichage(ci, e);
                     entitiesToRemove.add(e);
                     //System.out.println(ci.toString());
+                }
+            }
+        }
+    }
+    public void checkCollisionBindAffichage(ColliderInfo ci, IEntity e) {
+        if (ci.getEntity() != null) {
+            if (ci.getEntity().getId().equals(e.getId())) {
+                if(Life.cast(e).getHp() == 0) {
+                Life.cast(e).setDead(true);
+                }else{
+                    Life.cast(e).decreaseHp();
+                    setScore(getScore() + 1);
+                    System.out.println("Score : " + getScore());
                 }
             }
         }
@@ -158,6 +173,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             err.printStackTrace();
         }
     }
+
 
     @Override
     public void start() {
