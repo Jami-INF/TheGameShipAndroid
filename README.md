@@ -8,9 +8,8 @@
 ## Specs:
 - Shoot 'em Up
 - Max Score (unwinnable)
-- Enemy waves
+- Single enemy (in progress)
 - Custom difficulty
-- Sound design
 - Fixed view
   
 
@@ -24,4 +23,4 @@
 ## Credits:
 
 - Co-author: [Clergue Valentin](https://github.com/HandyS11)
-- Co-author: [Infante Jami](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- Co-author: [Infante Jami](https://github.com/Jami-INF)
