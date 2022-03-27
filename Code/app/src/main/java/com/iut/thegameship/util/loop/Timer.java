@@ -11,6 +11,9 @@ public class Timer implements IObserver {
     public void resetTimer() {
         timer = 0;
     }
+    public void setTimer(long timer) {
+        this.timer = timer;
+    }
 
     public Timer(Loop loop) {
         millis = loop.getMillis();
@@ -20,5 +23,7 @@ public class Timer implements IObserver {
     public void update() {
         timer += millis;
     }
+
+
 }
 

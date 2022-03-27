@@ -83,16 +83,11 @@ public class GameView extends View implements IObserver {
         Set<IEntity> entitiestmp = world.getEntityCollection();
         entities.clear();
         entities.addAll(entitiestmp);
-        //entities = world.getEntityCollection();
 
         player = world.getPlayer();
         Iterator it = entities.iterator();
         while (it.hasNext()) {
-
             IEntity e = (IEntity)it.next();
-            System.out.println(e.getName());
-            System.out.println(e.getEntityType());
-
             Location l = Location.cast(e);
             //delete shoot witch are out of the screen
             if (e.getEntityType() == EEntityType.Shoot) {
@@ -112,8 +107,6 @@ public class GameView extends View implements IObserver {
                     c.drawBitmap(this.bitmapEnemy, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
                     break;
             }
-
-
         }
     }
 

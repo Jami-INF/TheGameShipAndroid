@@ -32,6 +32,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
 
     private final Loop loop;
     private Timer timer;
+    private Timer timer2;
+    private Timer timer3;
 
     private final EntityManager entityManager = new EntityManager();
     private final EntityFabric entityFabric = new EntityFabric();
@@ -73,6 +75,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void init() {
         timer = new Timer(loop);
+        timer2 = new Timer(loop);
+        timer3 = new Timer(loop);
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
         enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/2));
@@ -105,21 +109,21 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     }
 
     private void updateEnemy(IEntity e) {
-        /*IEntity player = getPlayer();
-        IEntity player = getPlayer();
-        Location l = Location.cast(e);
-        if(getPlayer() != null){
-            l = Location.cast(player);
+        if (timer2.getTimer() <= 5000) {
+            ColliderInfo ci = move.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
+        }else if(timer2.getTimer() >= 5000 && timer2.getTimer() <= 15000) {
+            ColliderInfo ci = move.move(e, colliderEnemy, ECommand.RIGHT, Location.cast(e), Speed.cast(e));
+
+        }else if(timer2.getTimer() >= 15000 && timer2.getTimer() <= 25000) {
+            ColliderInfo ci = move.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
+        }else{
+            timer2.setTimer(5000);
         }
-        ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, l, Speed.cast(e), heightWindow, widthWindow);
-        if (timer2.getTimer() >= timer) {
-        ColliderInfo ci = move.move(e, colliderEnemy, ECommand.DOWN, l, Speed.cast(e), heightWindow, widthWindow);
-        /*if (timer2.getTimer() >= timer) {
-            //createShoot(e.getId(), Location.cast(e), ECommand.LEFT, timer);
-            timer2.resetTimer();
+        timer2.update();
+        if (timer3.getTimer() >= 2000) {
+            createShoot(e.getId(), Location.cast(e), ECommand.DOWN);
+            timer3.resetTimer();
         }
-        if(ci.IsCollision() && ci.getEntity() == null){
-        }*/
         /*if(ci.IsCollision() && ci.getEntity() == null){
             entityManager.removeEntity(e);
         }*/
