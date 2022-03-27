@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.UI.Views.GameView;
-import com.iut.thegameship.model.entity.componement.Life;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.loop.*;
 

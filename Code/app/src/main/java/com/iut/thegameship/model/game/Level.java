@@ -1,11 +1,9 @@
 package com.iut.thegameship.model.game;
 
-import com.iut.thegameship.UI.Activities.GameActivity;
 import com.iut.thegameship.model.collider.Collider;
 import com.iut.thegameship.model.collider.ColliderEnemy;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
-import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.EntityFabric;
 import com.iut.thegameship.model.entity.EntityManager;
 import com.iut.thegameship.model.entity.IEntity;

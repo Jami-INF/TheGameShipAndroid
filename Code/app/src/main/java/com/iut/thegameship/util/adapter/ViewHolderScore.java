@@ -1,6 +1,5 @@
 package com.iut.thegameship.util.adapter;
 
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
