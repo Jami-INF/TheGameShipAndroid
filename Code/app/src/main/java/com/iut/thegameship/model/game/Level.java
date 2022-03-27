@@ -5,6 +5,7 @@ import com.iut.thegameship.model.collider.Collider;
 import com.iut.thegameship.model.collider.ColliderEnemy;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
+import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.EntityFabric;
 import com.iut.thegameship.model.entity.EntityManager;
 import com.iut.thegameship.model.entity.IEntity;
@@ -96,26 +97,13 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             if (e2.getId().equals(e.getId())) {
                 ColliderInfo ci = move.move(e, colliderEnemy, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e));
                 if (ci.IsCollision()) {
-                    Life.cast(e).setDead(true);
+
                     if (ci.getEntity() != null) {
                         Life.cast(ci.getEntity()).decreaseHp();
+                        setScore(getScore() + 1);
                     }
-                    checkCollisionBindAffichage(ci, e);
                     entitiesToRemove.add(e);
                     //System.out.println(ci.toString());
-                }
-            }
-        }
-    }
-    public void checkCollisionBindAffichage(ColliderInfo ci, IEntity e) {
-        if (ci.getEntity() != null) {
-            if (ci.getEntity().getId().equals(e.getId())) {
-                if(Life.cast(e).getHp() == 0) {
-                Life.cast(e).setDead(true);
-                }else{
-                    Life.cast(e).decreaseHp();
-                    setScore(getScore() + 1);
-                    System.out.println("Score : " + getScore());
                 }
             }
         }
@@ -155,6 +143,11 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                     case Enemy:
                         updateEnemy(e);
                         break;
+                    case Player:
+                        if (Life.cast(e).getHp() <= 0) {
+
+                        }
+
                 }
             }
         } catch (Exception err) {
@@ -165,7 +158,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             for (IEntity e : entitiesToRemove) {
                 if (entitiesToRemove.contains(e)) {
                     entityManager.removeEntity(e);
-                    System.out.println("remove"+e.getName());
+                    //System.out.println("remove"+e.getName());
                     entitiesToRemove.remove(e);
                 }
             }

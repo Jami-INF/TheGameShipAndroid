@@ -4,10 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.model.entity.EEntityType;
@@ -92,7 +95,7 @@ public class GameView extends View implements IObserver {
             if (e.getEntityType() == EEntityType.Shoot) {
                 if (l.getX() > layoutWidth || l.getX() < 0 || l.getY() > layoutHeight || l.getY() < 0) {
                     it.remove();
-                    Log.d("Shoot", "remove");
+                    //Log.d("Shoot", "remove");
                 }
             }
             switch (e.getEntityType()) {
@@ -108,6 +111,16 @@ public class GameView extends View implements IObserver {
                     break;
             }
         }
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(50);
+        c.drawText("Score : " + world.getScore(), 30, 80, paint);
+        c.drawText("Life : " + world.getLife(), 500, 80, paint);
+        /*textViewScore = findViewById(R.id.textViewScore);
+        textViewScore.setText("Score : " + 22);
+        textViewLife = findViewById(R.id.textViewLife);
+        textViewLife.setText("Pv : " + 12);*/
     }
 
     @Override

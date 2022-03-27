@@ -29,8 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private Loop loop;
     private World world;
 
-    TextView textViewScore;
-    TextView textViewLife;
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -59,8 +58,7 @@ public class GameActivity extends AppCompatActivity {
         loop = world.loop;
         loop.subscribe(gameview);
         linearLayout.addView(gameview);
-        //setTextViewScore(world.getScore());
-        //setTextViewLife(world.getLife());
+
     }
 
     @Override
@@ -99,13 +97,13 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("nickname",nickname);
         return intent;
     }
-    public void setTextViewScore (int score){
+    /*public void setTextViewScore (int score){
         textViewScore = findViewById(R.id.textViewScore);
         textViewScore.setText("Score : " + world.getScore());
     }
     public void setTextViewLife(int hp){
         textViewLife = findViewById(R.id.textViewLife);
         textViewLife.setText("Pv : " + hp);
-    }
+    }*/
 
 }
