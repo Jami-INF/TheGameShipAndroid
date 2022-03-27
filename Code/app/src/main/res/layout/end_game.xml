@@ -14,6 +14,19 @@
         android:visibility="visible"
         app:srcCompat="@drawable/background_phone_format" />
 
+    <TextView
+        android:id="@+id/ScoreText"
+        android:layout_width="346dp"
+        android:layout_height="107dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBackGround"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageBackGround"
+        app:layout_constraintTop_toTopOf="@+id/imageBackGround"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/backToMenu"
         android:layout_width="wrap_content"

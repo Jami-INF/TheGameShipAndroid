@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class EndGameActivity extends AppCompatActivity {
     private ILoad loader;
     private Stub modele = new Stub();
     private ArrayList<Score> scores = null;
+
+    private TextView textViewScore;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,8 @@ public class EndGameActivity extends AppCompatActivity {
             Intent intent = GameActivity.newIntent(this, finalNickname);
             startActivity(intent);
         });
+        textViewScore = findViewById(R.id.ScoreText);
+        textViewScore.setText("Vous avez fait un score de : " + String.valueOf(scorePlayer));
 
     }
     @Override
