@@ -21,12 +21,12 @@ public class Collider implements ICollider {
 
     @Override
     public ColliderInfo isCollision(double nextX, double nextY, double height, double width, UUID id) {
-        boolean scene = isCollisionScene(nextX, nextY, height, width, heightWindow, widthWindow);
+        boolean scene = isCollisionScene(nextX, nextY, height, width);
         IEntity e = isCollisionEntity(nextX, nextY, height, width, id);
         return new ColliderInfo(scene, e);
     }
 
-    protected boolean isCollisionScene(double nextX, double nextY, double height, double width, double heightWindow, double widthWindow) {
+    protected boolean isCollisionScene(double nextX, double nextY, double height, double width) {
         return ((nextY <= 0) || (nextX <= 0) || (nextY + height >= heightWindow) || (nextX + width >= widthWindow));    //trop haut || trop à gauche || trop bas || trop à droite
     }
 
@@ -43,8 +43,9 @@ public class Collider implements ICollider {
                 double y2 = l.getY();
                 double height2 = l.getHeight();
                 double width2 = l.getWidth();
-                if (!((x2 >= nextX + width) || (x2 + width2 <= nextX) || (y2 >= nextY + height) || (y2 + height2 <= nextY)))    // trop à droite || trop à gauche || trop en bas || trop en haut
+                if (!((x2 >= nextX + width) || (x2 + width2 <= nextX) || (y2 >= nextY + height) || (y2 + height2 <= nextY))) {  //trop haut || trop à gauche || trop bas || trop à droite
                     return e2;
+                }
             }
         }
         return null;

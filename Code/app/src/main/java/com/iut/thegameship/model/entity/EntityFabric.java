@@ -44,7 +44,7 @@ public class EntityFabric {
     public IEntity createShoot(UUID ownerId, Location l, ECommand direction) {
         double heightShoot = 150;
         double widthShoot = 50;
-        double xShoot = l.getX() - widthShoot/2;
+        double xShoot = l.getX() + 70;
         double yShoot = l.getY() - 200;
         switch (direction) {
             case UP :
