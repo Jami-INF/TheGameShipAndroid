@@ -9,6 +9,6 @@ import com.iut.thegameship.util.input.ECommand;
 
 public interface IMove {
 
-    ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s, double heightWindow, double widthWindow) ;
+    ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s) ;
 }
 

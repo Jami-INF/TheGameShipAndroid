@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Move implements IMove {
 
     @Override
-    public ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s, double heightWindow, double widthWindow) {
+    public ColliderInfo move(IEntity e, ICollider c, ECommand key, Location l, Speed s) {
 
         double nextx = l.getX();
         double nexty = l.getY();

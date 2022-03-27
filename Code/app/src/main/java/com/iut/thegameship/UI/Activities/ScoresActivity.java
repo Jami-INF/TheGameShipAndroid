@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.iut.thegameship.R;
 import com.iut.thegameship.util.adapter.ArrayToView;
 import com.iut.thegameship.util.save.FileLoader;
@@ -25,7 +24,6 @@ import com.iut.thegameship.model.score.Score;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ScoresActivity extends AppCompatActivity {
 
@@ -119,7 +117,7 @@ public class ScoresActivity extends AppCompatActivity {
                 break;
         }
         for (Score score: scores) {
-            if (score.getDificulty() == difficulty)
+            if (score.getDifficulty() == difficulty)
                 scoreSelected.add(score);
         }
         return scoreSelected;

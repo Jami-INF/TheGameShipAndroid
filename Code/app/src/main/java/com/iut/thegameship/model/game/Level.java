@@ -7,6 +7,7 @@ import com.iut.thegameship.model.collider.ICollider;
 import com.iut.thegameship.model.entity.EntityFabric;
 import com.iut.thegameship.model.entity.EntityManager;
 import com.iut.thegameship.model.entity.IEntity;
+import com.iut.thegameship.model.entity.componement.EComponementType;
 import com.iut.thegameship.model.entity.componement.Life;
 import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Shoot;
@@ -46,8 +47,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     private IMove moveShoot = new MoveShoot();
     private IMove moveEnemy = new MoveEnemy();
 
-    private final ICollider collider = new Collider(getEntityCollection());
-    private final ICollider colliderEnemy = new ColliderEnemy(getEntityCollection());
+    private final ICollider collider;
+    private final ICollider colliderEnemy;
 
     private int score ;
     public int getScore() { return score; }
@@ -60,6 +61,9 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         this.loop = loop;
         this.widthWindow = widthWindow;
         this.heightWindow = heightWindow;
+
+        collider = new Collider(getEntityCollection(), widthWindow, heightWindow);
+        colliderEnemy = new ColliderEnemy(getEntityCollection(), widthWindow, heightWindow);
     }
 
     @Override
@@ -73,7 +77,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
 
     public void updatePlayer(ECommand key) {
         IEntity e = getPlayer();
-        move.move(e, collider, key, Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
+        move.move(e, collider, key, Location.cast(e), Speed.cast(e));
     }
 
     private void createShoot(UUID id, Location l, ECommand key) {
@@ -83,7 +87,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     private void updateShoot(IEntity e) {
         for (IEntity e2 : getEntityCollection()) {
             if (e2.getId().equals(e.getId())) {
-                ColliderInfo ci = move.move(e, collider, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
+                ColliderInfo ci = move.move(e, colliderEnemy, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e));
                 if (ci.IsCollision()) {
                     //Life.cast(e).setDead(true);
                     if (ci.getEntity() != null) {
@@ -139,22 +143,20 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                         break;
                 }
 
-                if (e.isTypeOf(EComponementType.Life)) {    //Gestion de la vie
-                    if (Life.cast(e).isDead()) {            //Si l'entité a de la vie
-                        listToBurn.add(e);
-                        if (e.getEntityType().equals(EEntityType.Enemy)) {
-                            //setScore(getScore() + (int) Launcher.getPersistenceManager().getSettings().getDifficulty());
-                        }
+                if (e.isTypeOf(EComponementType.Life)) {
+                    if (Life.cast(e).isDead()) {
+                        entitiesToBurn.add(e);
                     }
                 }
             }
-            for (IEntity e : listToBurn) {
+            for (IEntity e : entitiesToBurn) {
                 entityManager.removeEntity(e);
             }
-            //createNewWave(1, 2, 10000);
-        } catch (Exception err) {
+        }
+        catch (Exception err) {
             err.printStackTrace();
-        }*/
+        }
+    }
 
     private void updateEnemy(IEntity e) {
         IEntity player = getPlayer();
