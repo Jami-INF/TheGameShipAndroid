@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -80,14 +81,26 @@ public class GameView extends View implements IObserver {
     protected void onDraw(Canvas c) {
         super.onDraw(c);
         Set<IEntity> entitiestmp = world.getEntityCollection();
+        entities.clear();
         entities.addAll(entitiestmp);
         //entities = world.getEntityCollection();
-        player = world.getPlayer();
 
+        player = world.getPlayer();
         Iterator it = entities.iterator();
         while (it.hasNext()) {
+
             IEntity e = (IEntity)it.next();
+            System.out.println(e.getName());
+            System.out.println(e.getEntityType());
+
             Location l = Location.cast(e);
+            //delete shoot witch are out of the screen
+            if (e.getEntityType() == EEntityType.Shoot) {
+                if (l.getX() > layoutWidth || l.getX() < 0 || l.getY() > layoutHeight || l.getY() < 0) {
+                    it.remove();
+                    Log.d("Shoot", "remove");
+                }
+            }
             switch (e.getEntityType()) {
                 case Shoot:
                     c.drawBitmap(this.bitmapShoot, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);

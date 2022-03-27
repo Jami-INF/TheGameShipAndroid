@@ -1,5 +1,7 @@
 package com.iut.thegameship.model.game;
 
+import android.util.Log;
+
 import com.iut.thegameship.model.collider.Collider;
 import com.iut.thegameship.model.collider.ColliderEnemy;
 import com.iut.thegameship.model.collider.ColliderInfo;
@@ -20,6 +22,8 @@ import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -71,8 +75,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         timer = new Timer(loop);
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
-        //enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/2));
-        //entityManager.addEntity(enemy);
+        enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/2));
+        entityManager.addEntity(enemy);
     }
 
     public void updatePlayer(ECommand key) {
