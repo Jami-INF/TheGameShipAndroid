@@ -13,6 +13,7 @@ import com.iut.thegameship.R;
 import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
+import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.IObserver;
@@ -29,6 +30,7 @@ public class GameView extends View implements IObserver {
 
     private Bitmap bitmapShip;
     private Bitmap bitmapShoot;
+    private Bitmap bitmapShoot2;
     private Bitmap bitmapEnemy;
 
     private IEntity player;
@@ -45,14 +47,13 @@ public class GameView extends View implements IObserver {
     public void init(){
         bitmapShip = BitmapFactory.decodeResource(getResources(), R.drawable.spaceship);
         bitmapShoot = BitmapFactory.decodeResource(getResources(), R.drawable.missile);
+        bitmapShoot2 = BitmapFactory.decodeResource(getResources(), R.drawable.missile2);
         bitmapEnemy = BitmapFactory.decodeResource(getResources(), R.drawable.enemy);
     }
 
 
     @Override
-    protected void onLayout(boolean b, int left, int top, int right, int bottom ) {
-        // ..
-    }
+    protected void onLayout(boolean b, int left, int top, int right, int bottom ) {}
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -96,7 +97,8 @@ public class GameView extends View implements IObserver {
             }
             switch (e.getEntityType()) {
                 case Shoot:
-                    c.drawBitmap(this.bitmapShoot, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+                    if (Shoot.cast(e).getOwnerId() == player.getId()) {c.drawBitmap(this.bitmapShoot, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null); }
+                    else { c.drawBitmap(this.bitmapShoot2, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null); }
                     break;
                 case Player:
                     c.drawBitmap(this.bitmapShip, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);

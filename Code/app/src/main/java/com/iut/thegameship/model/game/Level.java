@@ -77,7 +77,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 10, 0);
         entityManager.addEntity(player);
 
-        enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/2));
+        enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3.5*(widthWindow/2));
         entityManager.addEntity(enemy);
     }
 
@@ -108,17 +108,18 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
 
     private void updateEnemy(IEntity e) {
         if (timer2.getTimer() <= 5000) {
-            ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
+            moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
         } else if (timer2.getTimer() >= 5000 && timer2.getTimer() <= 15000) {
-            ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.RIGHT, Location.cast(e), Speed.cast(e));
+            moveEnemy.move(e, colliderEnemy, ECommand.RIGHT, Location.cast(e), Speed.cast(e));
         } else if (timer2.getTimer() >= 15000 && timer2.getTimer() <= 25000) {
-            ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
+            moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
         } else {
             timer2.setTimer(5000);
         }
         timer2.update();
         if (timer3.getTimer() >= 3000) {
-            createShoot(e.getId(), Location.cast(e), ECommand.DOWN);
+            Location l = new Location(500, 1000, 50, 50);    // Location.cast(e)
+            createShoot(e.getId(), l, ECommand.DOWN);
             timer3.resetTimer();
         }
         timer3.update();
@@ -156,7 +157,6 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             }
         } catch (Exception err) {
             err.printStackTrace();
-
         }
     }
 

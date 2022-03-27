@@ -42,21 +42,27 @@ public class EntityFabric {
     }
 
     public IEntity createShoot(UUID ownerId, Location l, ECommand direction) {
-        double heightShoot = 150;
-        double widthShoot = 50;
+        double heightShoot = 120;
+        double widthShoot = 40;
         double xShoot = l.getX() + 70;
         double yShoot = l.getY();
+
+        String img = "hearth";
+
+        String name = "Shoot" + getShootNumber() + "_" + ownerId.toString();
+        Entity e = new Entity(name, EEntityType.Shoot);
+
         switch (direction) {
             case UP :
                 yShoot += l.getHeight() - (heightShoot + 200);
+                img = "missile";
                 break;
             case DOWN :
                 yShoot -= l.getHeight() + (heightShoot + 200);
+                img = "missile2";
                 break;
         }
-        String name = "Shoot" + getShootNumber() + "_" + ownerId.toString();
-        Entity e = new Entity(name, EEntityType.Shoot);
-        e.addComponement(new Sprite("missile"));
+        e.addComponement(new Sprite(img));
         e.addComponement(new Location(xShoot, yShoot, heightShoot, widthShoot));
         e.addComponement(new Life(1));
         e.addComponement(new Speed(0, 20));
