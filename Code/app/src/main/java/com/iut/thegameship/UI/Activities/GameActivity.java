@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.iut.thegameship.R;
 import com.iut.thegameship.UI.Views.GameView;
+import com.iut.thegameship.model.entity.componement.Life;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.loop.*;
 
@@ -23,6 +25,9 @@ public class GameActivity extends AppCompatActivity {
     private GameView gameview;
     private int layoutWidth;
     private int layoutHeight;
+
+    private TextView textViewScore;
+    private TextView textViewLife;
 
     private Loop loop;
     private World world;
@@ -54,6 +59,9 @@ public class GameActivity extends AppCompatActivity {
         loop = world.loop;
         loop.subscribe(gameview);
         linearLayout.addView(gameview);
+        //bind score and life
+        setTextViewScore(world.getScore());
+        setTextViewLife(world.getLife());
     }
 
     @Override
@@ -91,6 +99,14 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(context, GameActivity.class);
         intent.putExtra("nickname",nickname);
         return intent;
+    }
+    public void setTextViewScore (int score){
+        textViewScore = findViewById(R.id.textViewScore);
+        textViewScore.setText("Score : " + world.getScore());
+    }
+    public void setTextViewLife(int hp){
+        textViewLife = findViewById(R.id.textViewLife);
+        textViewLife.setText("Pv : " + hp);
     }
 
 }

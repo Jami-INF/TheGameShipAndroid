@@ -1,6 +1,7 @@
 package com.iut.thegameship.model.game;
 
 import com.iut.thegameship.model.entity.IEntity;
+import com.iut.thegameship.model.entity.componement.Life;
 import com.iut.thegameship.util.loop.Loop;
 
 import java.util.Set;
@@ -14,6 +15,9 @@ public class World implements IEntityCollection, ILifeCycle {
 
     public int getScore() {
         return currentLevel.getScore();
+    }
+    public int getLife() {
+        return (int) Life.cast(currentLevel.getPlayer()).getHp();
     }
     public Level getCurrentLevel() {
         return currentLevel;
@@ -65,5 +69,7 @@ public class World implements IEntityCollection, ILifeCycle {
         loop.StopLoop();
         thread.interrupt();
     }
+
+
 }
 
