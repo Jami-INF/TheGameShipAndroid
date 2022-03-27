@@ -13,8 +13,6 @@ import com.iut.thegameship.R;
 import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
-import com.iut.thegameship.model.entity.componement.Shoot;
-import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.IObserver;

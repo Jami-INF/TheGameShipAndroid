@@ -1,8 +1,6 @@
 package com.iut.thegameship.model.move;
 
-import com.iut.thegameship.model.entity.componement.EComponementType;
 import com.iut.thegameship.model.entity.componement.Location;
-import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.entity.componement.Speed;
 import com.iut.thegameship.model.collider.ColliderInfo;
 import com.iut.thegameship.model.collider.ICollider;
@@ -36,16 +34,12 @@ public class Move implements IMove {
 
         //Vérifie la collision
         UUID id = e.getId();
-        /*if (e.isTypeOf(EComponementType.Shoot)) {
-            id = Shoot.cast(e).getOwnerId();
-        }*/
-
         //Et si ce n'est pas en collision, sa déplace l'entité
         ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), id);
-        //if (!ci.IsCollision()) {
+        if (!ci.IsCollision()) {
             l.setX(nextx);
             l.setY(nexty);
-        //}
+        }
         return ci;
     }
 }

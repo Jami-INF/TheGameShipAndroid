@@ -31,7 +31,7 @@ public class EntityFabric {
     }
 
     public Entity createEnemy(String name, String sprite, double height, double width, double hp, double x, double y) {
-        Entity e = createPlayer(name, sprite, height, width, hp, x, y, 3, 3);
+        Entity e = createPlayer(name, sprite, height, width, hp, x, y, 5, 0);
         e.setEntityType(EEntityType.Enemy);
         return e;
     }
@@ -45,13 +45,13 @@ public class EntityFabric {
         double heightShoot = 150;
         double widthShoot = 50;
         double xShoot = l.getX() + 70;
-        double yShoot = l.getY() - 200;
+        double yShoot = l.getY();
         switch (direction) {
             case UP :
-                yShoot += l.getHeight() - heightShoot;
+                yShoot += l.getHeight() - (heightShoot + 200);
                 break;
             case DOWN :
-                yShoot -= l.getHeight() + heightShoot;
+                yShoot -= l.getHeight() + (heightShoot + 200);
                 break;
         }
         String name = "Shoot" + getShootNumber() + "_" + ownerId.toString();
@@ -59,7 +59,7 @@ public class EntityFabric {
         e.addComponement(new Sprite("missile"));
         e.addComponement(new Location(xShoot, yShoot, heightShoot, widthShoot));
         e.addComponement(new Life(1));
-        e.addComponement(new Speed(0, 15));
+        e.addComponement(new Speed(0, 20));
         e.addComponement(new Shoot(ownerId, direction));
         return e;
     }

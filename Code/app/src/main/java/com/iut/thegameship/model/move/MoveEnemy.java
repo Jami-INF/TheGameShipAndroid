@@ -17,8 +17,11 @@ public class MoveEnemy implements IMove {
         double nexty = l.getX();
 
         switch (key) {
-            case DOWN :
-                nexty += s.getSpeedY();
+            case LEFT :
+                nextx -= s.getSpeedX();
+                break;
+            case RIGHT:
+                nextx += s.getSpeedX();
                 break;
         }
 
