@@ -35,7 +35,4 @@ public class Loop extends Observable implements Runnable {
         unsubscribeAll();
     }
 
-    public void setView(GameView gameview) {
-        subscribe(gameview);
-    }
 }

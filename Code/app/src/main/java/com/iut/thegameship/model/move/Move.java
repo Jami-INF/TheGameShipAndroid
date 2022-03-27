@@ -42,10 +42,10 @@ public class Move implements IMove {
 
         //Et si ce n'est pas en collision, sa déplace l'entité
         ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), id, heightWindow, widthWindow);
-        if (!ci.IsCollision()) {
+        //if (!ci.IsCollision()) {
             l.setX(nextx);
             l.setY(nexty);
-        }
+        //}
         return ci;
     }
 }

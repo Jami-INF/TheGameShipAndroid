@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
 
-        android:text="DNF"
+        android:text="None"
         android:textSize="@dimen/clasic_text"/>
 </LinearLayout>

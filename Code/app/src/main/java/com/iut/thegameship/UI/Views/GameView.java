@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class GameView extends View implements IObserver {
-    //ViewGroup
+    //ViewGroupx
     public World world;
 
     private final double layoutWidth;
@@ -75,13 +75,6 @@ public class GameView extends View implements IObserver {
         //entities = world.getEntityCollection();
         player = world.getPlayer();
 
-        /*for(IEntity e : entities){
-                int resID = getResources().getIdentifier(Sprite.cast(e).getSprite(), "drawable", getContext().getPackageName());
-                Location l = Location.cast(e);
-                Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
-                c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
-                System.out.println(e.getEntityType());
-        }*/
         Iterator it = entities.iterator();
         while (it.hasNext()) {
             IEntity e = (IEntity)it.next();
@@ -89,7 +82,7 @@ public class GameView extends View implements IObserver {
             Location l = Location.cast(e);
             Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
             c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
-            System.out.println(e.getEntityType());
+            //System.out.println(e.getEntityType());
         }
     }
 
@@ -98,3 +91,5 @@ public class GameView extends View implements IObserver {
         postInvalidate();
     }
 }
+
+

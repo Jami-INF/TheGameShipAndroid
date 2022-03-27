@@ -28,7 +28,7 @@ public class World implements IEntityCollection, ILifeCycle {
     }
 
     public World(double widthWindow, double heightWindow) {
-        loop = new Loop(20);
+        loop = new Loop(500);
         thread = new Thread(loop);
 
         currentLevel = new Level(loop, widthWindow, heightWindow); //Mettre le bon monde

@@ -16,7 +16,7 @@ import com.iut.thegameship.UI.Views.GameView;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.loop.*;
 
-public class GameActivity extends AppCompatActivity  {
+public class GameActivity extends AppCompatActivity {
 
     private ConstraintLayout layout;
     private LinearLayout linearLayout;
@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity  {
         gameview = new GameView(this, world, layoutWidth, layoutHeight);
 
         loop = world.loop;
-        loop.setView(gameview);
+        loop.subscribe(gameview);
         linearLayout.addView(gameview);
     }
 
@@ -92,4 +92,5 @@ public class GameActivity extends AppCompatActivity  {
         intent.putExtra("nickname",nickname);
         return intent;
     }
+
 }

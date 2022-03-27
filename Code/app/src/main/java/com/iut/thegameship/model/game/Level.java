@@ -19,6 +19,7 @@ import com.iut.thegameship.util.input.ECommand;
 import com.iut.thegameship.util.loop.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,9 +34,13 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     private IEntity player;
     public IEntity getPlayer() { return player; }
 
+    private IEntity enemy;
+    public IEntity getEnemy() { return enemy; }
+
     @Override public Set<IEntity> getEntityCollection() {
         return entityManager.getEntityCollection();
     }
+    List<IEntity> entitesToRemove = new ArrayList<>();
 
     private IMove move = new Move();
     private IMove moveShoot = new MoveShoot();
@@ -62,6 +67,8 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         timer = new Timer(loop);
         player = entityFabric.createPlayer("Vaisseau", "spaceship", widthWindow/6, widthWindow/6, 3 , widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/6), 20, 0);
         entityManager.addEntity(player);
+        //enemy = entityFabric.createEnemy("enemy", "enemy", widthWindow/6, widthWindow/6, 5, widthWindow/2 - widthWindow/12, heightWindow - 3*(widthWindow/2));
+        //entityManager.addEntity(enemy);
     }
 
     public void updatePlayer(ECommand key) {
@@ -78,10 +85,12 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
             if (e2.getId().equals(e.getId())) {
                 ColliderInfo ci = move.move(e, collider, Shoot.cast(e).getDirection(), Location.cast(e), Speed.cast(e), heightWindow, widthWindow);
                 if (ci.IsCollision()) {
-                    Life.cast(e).setDead(true);
+                    //Life.cast(e).setDead(true);
                     if (ci.getEntity() != null) {
                         Life.cast(ci.getEntity()).decreaseHp();
                     }
+                    entitesToRemove.add(e);
+                    System.out.println(ci.toString());
                 }
             }
         }
@@ -90,11 +99,10 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void update() {
         try {
-            if (timer.getTimer() >= 1000) {
+            if (timer.getTimer() >= 10000) {
                 createShoot(player.getId(), Location.cast(player), ECommand.UP);
                 timer.resetTimer();
             }
-
             for (IEntity e : new ArrayList<>(getEntityCollection())) {
                 switch (e.getEntityType()) {
                     case Shoot:
@@ -104,11 +112,19 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                         updateEnemy(e);
                         break;
                 }
+
             }
+
         }
         catch (Exception err) {
             err.printStackTrace();
         }
+        /*for (IEntity e : entitesToRemove) {
+            if(entitesToRemove.contains(e)) {
+                entityManager.removeEntity(e);
+                System.out.println("remove"+e.getName());
+            }
+        }*/
     }
         /*try {
             List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
@@ -141,17 +157,17 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         }*/
 
     private void updateEnemy(IEntity e) {
-        /*IEntity player = getPlayer();
+        IEntity player = getPlayer();
         Location l = Location.cast(e);
         if(getPlayer() != null){
             l = Location.cast(player);
         }
-        ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, l, Speed.cast(e), heightWindow, widthWindow);
-        if (timer2.getTimer() >= timer) {
+        ColliderInfo ci = move.move(e, colliderEnemy, ECommand.DOWN, l, Speed.cast(e), heightWindow, widthWindow);
+        /*if (timer2.getTimer() >= timer) {
             //createShoot(e.getId(), Location.cast(e), ECommand.LEFT, timer);
             timer2.resetTimer();
-        }
-        if(ci.IsCollision() && ci.getEntity() == null){
+        }*/
+        /*if(ci.IsCollision() && ci.getEntity() == null){
             entityManager.removeEntity(e);
         }*/
     }

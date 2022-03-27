@@ -7,6 +7,8 @@ import com.iut.thegameship.model.entity.componement.Location;
 import com.iut.thegameship.model.entity.componement.Speed;
 import com.iut.thegameship.util.input.ECommand;
 
+import java.util.UUID;
+
 public class MoveShoot implements IMove {
 
     @Override
@@ -17,13 +19,15 @@ public class MoveShoot implements IMove {
         double nextx = l.getX();
 
         switch (key) {
-            case UP :
-                nexty += s.getSpeedY();
-                break;
-            case DOWN:
+            case UP:
                 nexty -= s.getSpeedY();
                 break;
+            case DOWN:
+                nexty += s.getSpeedY();
+                break;
         }
+
+        UUID id = e.getId();
 
         //Et si ce n'est pas en collision, sa déplace l'entité
         ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), e.getId(), heightWindow, widthWindow);

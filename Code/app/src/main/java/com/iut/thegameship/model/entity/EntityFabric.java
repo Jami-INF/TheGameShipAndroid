@@ -45,7 +45,7 @@ public class EntityFabric {
         double heightShoot = 150;
         double widthShoot = 50;
         double xShoot = l.getX() - widthShoot/2;
-        double yShoot = l.getY();
+        double yShoot = l.getY() - 200;
         switch (direction) {
             case UP :
                 yShoot += l.getHeight() - heightShoot;
