@@ -100,10 +100,30 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         }
     }
 
+    private void updateEnemy(IEntity e) {
+        /*IEntity player = getPlayer();
+        IEntity player = getPlayer();
+        Location l = Location.cast(e);
+        if(getPlayer() != null){
+            l = Location.cast(player);
+        }
+        ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, l, Speed.cast(e), heightWindow, widthWindow);
+        if (timer2.getTimer() >= timer) {
+        ColliderInfo ci = move.move(e, colliderEnemy, ECommand.DOWN, l, Speed.cast(e), heightWindow, widthWindow);
+        /*if (timer2.getTimer() >= timer) {
+            //createShoot(e.getId(), Location.cast(e), ECommand.LEFT, timer);
+            timer2.resetTimer();
+        }
+        if(ci.IsCollision() && ci.getEntity() == null){
+        }*/
+        /*if(ci.IsCollision() && ci.getEntity() == null){
+            entityManager.removeEntity(e);
+        }*/
+    }
     @Override
     public void update() {
         try {
-            if (timer.getTimer() >= 10000) {
+            if (timer.getTimer() >= 2000) {
                 createShoot(player.getId(), Location.cast(player), ECommand.UP);
                 timer.resetTimer();
             }
@@ -116,19 +136,23 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                         updateEnemy(e);
                         break;
                 }
-
             }
-
         }
         catch (Exception err) {
             err.printStackTrace();
         }
-        /*for (IEntity e : entitesToRemove) {
+        try{
+        for (IEntity e : entitesToRemove) {
             if(entitesToRemove.contains(e)) {
                 entityManager.removeEntity(e);
                 System.out.println("remove"+e.getName());
+                entitesToRemove.remove(e);
             }
-        }*/
+        }
+        }catch (Exception err){
+            err.printStackTrace();
+
+        }
     }
         /*try {
             List<IEntity> listToBurn = new ArrayList<>();       // Création d'une liste temporaire pour stocker les entitées à supprimer
@@ -172,7 +196,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         /*if(ci.IsCollision() && ci.getEntity() == null){
             entityManager.removeEntity(e);
         }*/
-    }
+
 
     private void createNewWave(int min, int max, long timer) {
         /*double height = 70;

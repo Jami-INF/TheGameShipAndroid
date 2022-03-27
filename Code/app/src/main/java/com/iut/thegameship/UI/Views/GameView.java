@@ -8,8 +8,11 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.iut.thegameship.R;
+import com.iut.thegameship.model.entity.EEntityType;
 import com.iut.thegameship.model.entity.IEntity;
 import com.iut.thegameship.model.entity.componement.Location;
+import com.iut.thegameship.model.entity.componement.Shoot;
 import com.iut.thegameship.model.entity.componement.Sprite;
 import com.iut.thegameship.model.game.World;
 import com.iut.thegameship.util.input.ECommand;
@@ -25,15 +28,27 @@ public class GameView extends View implements IObserver {
     private final double layoutWidth;
     private final double layoutHeight;
 
+    private Bitmap bitmapShip;
+    private Bitmap bitmapShoot;
+    private Bitmap bitmapEnemy;
+
     private IEntity player;
     public Set<IEntity> entities = new HashSet<IEntity>();
 
     public GameView(Context context, World world, double layoutWidth, double layoutHeight) {
         super(context);
+        init();
         this.layoutWidth = layoutWidth;
         this.layoutHeight = layoutHeight;
         this.world = world;
+
     }
+    public void init(){
+        bitmapShip = BitmapFactory.decodeResource(getResources(), R.drawable.spaceship);
+        bitmapShoot = BitmapFactory.decodeResource(getResources(), R.drawable.missile);
+        bitmapEnemy = BitmapFactory.decodeResource(getResources(), R.drawable.enemy);
+    }
+
 
     @Override
     protected void onLayout(boolean b, int left, int top, int right, int bottom ) {
@@ -69,19 +84,23 @@ public class GameView extends View implements IObserver {
         //entities = world.getEntityCollection();
         player = world.getPlayer();
 
-        /*for(IEntity e : entities){
-                int resID = getResources().getIdentifier(Sprite.cast(e).getSprite(), "drawable", getContext().getPackageName());
-                Location l = Location.cast(e);
-                Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
-                c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
-        }*/
         Iterator it = entities.iterator();
         while (it.hasNext()) {
             IEntity e = (IEntity)it.next();
-            int resID = getResources().getIdentifier(Sprite.cast(e).getSprite(), "drawable", getContext().getPackageName());
             Location l = Location.cast(e);
-            Bitmap shipBitmap = BitmapFactory.decodeResource(getResources(), resID);
-            c.drawBitmap(shipBitmap, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+            switch (e.getEntityType()) {
+                case Shoot:
+                    c.drawBitmap(this.bitmapShoot, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+                    break;
+                case Player:
+                    c.drawBitmap(this.bitmapShip, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+                    break;
+                case Enemy:
+                    c.drawBitmap(this.bitmapEnemy, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
+                    break;
+            }
+
+
         }
     }
 

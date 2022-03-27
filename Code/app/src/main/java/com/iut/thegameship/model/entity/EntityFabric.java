@@ -59,7 +59,7 @@ public class EntityFabric {
         e.addComponement(new Sprite("missile"));
         e.addComponement(new Location(xShoot, yShoot, heightShoot, widthShoot));
         e.addComponement(new Life(1));
-        e.addComponement(new Speed(0, 5));
+        e.addComponement(new Speed(0, 15));
         e.addComponement(new Shoot(ownerId, direction));
         return e;
     }
