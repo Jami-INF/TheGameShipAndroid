@@ -110,18 +110,18 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         if (timer2.getTimer() <= 5000) {
             ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
         } else if (timer2.getTimer() >= 5000 && timer2.getTimer() <= 15000) {
-            ColliderInfo ci = move.move(e, colliderEnemy, ECommand.RIGHT, Location.cast(e), Speed.cast(e));
-
+            ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.RIGHT, Location.cast(e), Speed.cast(e));
         } else if (timer2.getTimer() >= 15000 && timer2.getTimer() <= 25000) {
-            ColliderInfo ci = move.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
+            ColliderInfo ci = moveEnemy.move(e, colliderEnemy, ECommand.LEFT, Location.cast(e), Speed.cast(e));
         } else {
             timer2.setTimer(5000);
         }
         timer2.update();
-        if (timer3.getTimer() >= 2000) {
+        if (timer3.getTimer() >= 3000) {
             createShoot(e.getId(), Location.cast(e), ECommand.DOWN);
             timer3.resetTimer();
         }
+        timer3.update();
     }
 
     @Override
@@ -169,13 +169,11 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
     @Override
     public void pause() {
         loop.StopLoop();
-        return;
     }
 
     @Override
     public void resume() {
         loop.RestartLoop();
-        return;
     }
 
     @Override

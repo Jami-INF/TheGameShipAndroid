@@ -29,7 +29,6 @@ public class MoveEnemy implements IMove {
         ColliderInfo ci = c.isCollision(nextx, nexty, l.getHeight(), l.getWidth(), e.getId());
         if (!ci.IsCollision()) {
             l.setX(nextx);
-            l.setY(nexty);
         }
         return ci;
     }
