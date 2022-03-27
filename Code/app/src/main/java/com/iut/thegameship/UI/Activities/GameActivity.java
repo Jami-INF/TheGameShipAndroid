@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private Loop loop;
     private World world;
 
+    String nickname;
 
 
 
@@ -37,6 +38,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        nickname = getIntent().getStringExtra("nickname");
+        if (nickname.equals("")) {
+            nickname = "guest";
+        }
+
         setContentView(R.layout.game);
 
         DisplayMetrics sizes = new DisplayMetrics();
@@ -53,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
 
         this.world = new World(layoutWidth, layoutHeight);
         world.init();
-        gameview = new GameView(this, world, layoutWidth, layoutHeight);
+        gameview = new GameView(this, world, layoutWidth, layoutHeight, nickname);
 
         loop = world.loop;
         loop.subscribe(gameview);
@@ -64,10 +71,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String nickname = getIntent().getStringExtra("nickname");
-        if (nickname.equals("")) {
-            nickname = "guest";
-        }
+
         world.start();
     }
 

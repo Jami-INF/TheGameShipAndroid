@@ -38,12 +38,15 @@ public class GameView extends View implements IObserver {
     private Bitmap bitmapShoot2;
     private Bitmap bitmapEnemy;
 
+    String nickname;
+
     private IEntity player;
     public Set<IEntity> entities = new HashSet<IEntity>();
 
-    public GameView(Context context, World world, double layoutWidth, double layoutHeight) {
+    public GameView(Context context, World world, double layoutWidth, double layoutHeight, String nickname) {
         super(context);
         init();
+        this.nickname = nickname;
         this.layoutWidth = layoutWidth;
         this.layoutHeight = layoutHeight;
         this.world = world;
@@ -108,7 +111,7 @@ public class GameView extends View implements IObserver {
                 case Player:
                     //lancer l'activité EndGame si le joueur est mort
                     if (world.getLife() <= 0) {
-                        Intent intent = EndGameActivity.newIntent(getContext(), "nickname", world.getScore());
+                        Intent intent = EndGameActivity.newIntent(getContext(), nickname, world.getScore());
                         getContext().startActivity(intent);
                     }
                     c.drawBitmap(this.bitmapShip, null, new Rect((int) l.getX(), (int) l.getY(), (int) l.getX() + (int) l.getWidth(), (int) l.getY() + (int) l.getHeight()), null);
