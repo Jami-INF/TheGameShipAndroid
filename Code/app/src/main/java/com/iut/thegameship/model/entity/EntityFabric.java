@@ -58,7 +58,7 @@ public class EntityFabric {
                 img = "missile";
                 break;
             case DOWN :
-                yShoot -= l.getHeight() + (heightShoot + 200);
+                yShoot -= l.getHeight() - (heightShoot + 250);
                 img = "missile2";
                 break;
         }

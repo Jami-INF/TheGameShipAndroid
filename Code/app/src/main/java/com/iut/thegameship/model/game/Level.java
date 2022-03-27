@@ -100,7 +100,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
                         Life.cast(ci.getEntity()).decreaseHp();
                     }
                     entitiesToRemove.add(e);
-                    System.out.println(ci.toString());
+                    //System.out.println(ci.toString());
                 }
             }
         }
@@ -118,8 +118,7 @@ public class Level implements IEntityCollection, ILifeCycle, IObserver {
         }
         timer2.update();
         if (timer3.getTimer() >= 3000) {
-            Location l = new Location(500, 1000, 50, 50);    // Location.cast(e)
-            createShoot(e.getId(), l, ECommand.DOWN);
+            createShoot(e.getId(), Location.cast(e), ECommand.DOWN);
             timer3.resetTimer();
         }
         timer3.update();
